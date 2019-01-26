@@ -58,7 +58,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col s6 m6">
         </div>
@@ -71,45 +71,229 @@
                         size="30" />
                     <a id="from-link" href="#">Get my position</a> -->
                     <select id="crawlersNum">
-                            <option id="city" data-latitude="25.78548" data-longitude="-80.19095" value="1" >Miami</option>
-                            <option id="city" data-latitude="40.79587" data-longitude="-73.96706" value="2">Manhattan</option>
-                            <option id="city" data-latitude="38.91330" data-longitude="1.43262" value="3">Ibiza</option>
-                            <option id="city" data-latitude="36.16607" data-longitude="-115.16467" value="4">Vegas</option>
-                            <option id="city" data-latitude="40.41466" data-longitude="-3.69724" value="5">Madrid</option>
+                        <option id="city" data-latitude="25.78548" data-longitude="-80.19095" value="1">Miami</option>
+                        <option id="city" data-latitude="40.79587" data-longitude="-73.96706" value="2">Manhattan</option>
+                        <option id="city" data-latitude="38.91330" data-longitude="1.43262" value="3">Ibiza</option>
+                        <option id="city" data-latitude="36.16607" data-longitude="-115.16467" value="4">Vegas</option>
+                        <option id="city" data-latitude="40.41466" data-longitude="-3.69724" value="5">Madrid</option>
                     </select>
                     <div></div>
                     <br>
                     <label for="crawlingWith" style="font-size:25px;">How Many Freinds Are You Crawling With?</label>
                     <select id="crawlersNum">
-                            <option value="1" >1 Crawler</option>
-                            <option value="2">2 Crawlers</option>
-                            <option value="3">3 Crawlers</option>
-                            <option value="4">4 Crawlers</option>
-                            <option value="5">5 Crawlers</option>
-                            <option value="6">6 Crawlers</option>
-                            <option value="7">7 Crawlers</option>
-                            <option value="8">8 Crawlers</option>
+                        <option value="1">1 Crawler</option>
+                        <option value="2">2 Crawlers</option>
+                        <option value="3">3 Crawlers</option>
+                        <option value="4">4 Crawlers</option>
+                        <option value="5">5 Crawlers</option>
+                        <option value="6">6 Crawlers</option>
+                        <option value="7">7 Crawlers</option>
+                        <option value="8">8 Crawlers</option>
                     </select>
                     <br>
                     <label for="crawlingWith" style="font-size:25px;">How Many Pubs Would You Like To Crawl?</label>
                     <select id="pubsNum">
-                            <option value="1" >1 ($15)</option>
-                            <option value="25">2 ($25)</option>
-                            <option value="30">3 ($30)</option>
-                            <option value="38">4 ($38)</option>
-                            <option value="43">5 ($43)</option>
-                            <option value="47">6 ($47)</option>
-                            <option value="55">7 ($55)</option>
+                        <option value="1">1 ($15)</option>
+                        <option value="25">2 ($25)</option>
+                        <option value="30">3 ($30)</option>
+                        <option value="38">4 ($38)</option>
+                        <option value="43">5 ($43)</option>
+                        <option value="47">6 ($47)</option>
+                        <option value="55">7 ($55)</option>
                     </select>
 
                     <input class="btn btn-info" id="submit" type="submit" />
                 </form>
-                <div id="map"></div>
-                <p id="error"></p>
             </div>
         </div>
     </div>
+    <br><br><br>
+    <div class="row">
+        <div class="slider">
+            <ul class="slides">
+                <li>
+                    <img style="align-content:center;" src="assets/images/pubCrawlBackground4.png">
+                    <!-- random image -->
+                    <div class="caption center-align">
+                        <h3>Check Out One of Our</h3>
+                        <h5 class="light grey-text text-lighten-3">Already Completed Pub Crawls!</h5>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="assets/images/cardPicMiami.png">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">My Latest Crawl<i class="material-icons right">$47/person</i></span>
+                    <p><a href="#">Create Your Own Itinerary</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">My Latest Crawl - Miami<i class="material-icons right">close</i></span>
+                    <div id="Adress1">
+                        <p>
+                            <h5>A. RedBar</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress2">
+                        <p>
+                            <h5>B. Baru</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress3">
+                        <p>
+                            <h5>C. Tucandela</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress4">
+                        <p>
+                            <h5>D. Sugar</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="assets/images/cardPicManhattan.png">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">My Third Crawl<i class="material-icons right">$55/person</i></span>
+                    <p><a href="#">Create Your Own Itinerary</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">My Third Crawl - Manhattan<i class="material-icons right">close</i></span>
+                    <div id="Adress1">
+                        <p>
+                            <h5>A. Fados Irish Pub</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress2">
+                        <p>
+                            <h5>B. Eataly</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress3">
+                        <p>
+                            <h5>C. Regent Hotel</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress4">
+                        <p>
+                            <h5>D. Azura</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="assets/images/cardPicIbiza.png">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">My Second Crawl<i class="material-icons right">$30/person</i></span>
+                    <p><a href="#">Create Your Own Itinerary</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">My Second Crawl - Ibiza<i class="material-icons right">close</i></span>
+                    <div id="Adress1">
+                        <p>
+                            <h5>A. Amnesia</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress2">
+                        <p>
+                            <h5>B. San Antonio</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress3">
+                        <p>
+                            <h5>C. Pacha</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress4">
+                        <p>
+                            <h5>D. Ushaia</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="assets/images/cardPicVegas.png">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">My First Crawl<i class="material-icons right">$38/person</i></span>
+                    <p><a href="#">Create Your Own Itinerary</a></p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">My First Crawl - Vegas<i class="material-icons right">close</i></span>
+                    <div id="Adress1">
+                        <p>
+                            <h5>A. Cesars</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress2">
+                        <p>
+                            <h5>B. Venetian</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress3">
+                        <p>
+                            <h5>C. Luxor</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                    <div id="Adress4">
+                        <p>
+                            <h5>D. Stratosphere</h5>
+                        </p>
+                        <p>Address</p>
+                        <p>Ratings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <footer class="page-footer">
         <div class="container">
