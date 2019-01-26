@@ -1,6 +1,11 @@
 // console.log("on");
 
 $(document).ready(function () {
+
+
+
+    
+
      function calculateRoute(from, to) {
           //use only  a single maps-instance
           if (!window.mapObject) {
