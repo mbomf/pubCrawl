@@ -60,83 +60,17 @@
     </div>
 
     <div class="row">
-        <div class="col s6 m6">
+        <div class="col s6 m6" id="map-display">
         </div>
-        <div class="col l6 m6">
-            <div id="City Form">
-                <h2>Time to Get Shwasted.</h2>
-                <h4> Pick your PubCrawl Starting Point! </h4>
-                <br>
-                <form id="calculate-route" name="calculate-route" action="#" method="get">
-                    <label for="from" style="font-size:25px;">Where Are You Crawling From</label>
-                    <!-- <input class="z-depth-5" type="text" id="from" name="from" required="required" placeholder="Search By City or Address"
-                        size="30" />
-                    <a id="from-link" href="#">Get my position</a> -->
-                    <select id="crawlersCity">
-                        <option id="city" data-latitude="25.78548" data-longitude="-80.19095" value="1">Miami</option>
-                        <option id="city" data-latitude="40.79587" data-longitude="-73.96706" value="2">Manhattan</option>
-                        <option id="city" data-latitude="38.91330" data-longitude="1.43262" value="3">Ibiza</option>
-                        <option id="city" data-latitude="36.16607" data-longitude="-115.16467" value="4">Vegas</option>
-                        <option id="city" data-latitude="40.41466" data-longitude="-3.69724" value="5">Madrid</option>
-                    </select>
-                    <div></div>
-                    <br>
-                    <label for="crawlersNum" style="font-size:25px;">How Many Freinds Are You Crawling With?</label>
-                    <select id="crawlersNum">
-                        <option value="1">1 Crawler</option>
-                        <option value="2">2 Crawlers</option>
-                        <option value="3">3 Crawlers</option>
-                        <option value="4">4 Crawlers</option>
-                        <option value="5">5 Crawlers</option>
-                        <option value="6">6 Crawlers</option>
-                        <option value="7">7 Crawlers</option>
-                        <option value="8">8 Crawlers</option>
-                    </select>
-                    <br>
-                    <label for="pubsNum" style="font-size:25px;">How Many Pubs Would You Like To Crawl?</label>
-                    <select id="pubsNum">
-                        <option value="1">1 ($15)</option>
-                        <option value="2">2 ($25)</option>
-                        <option value="3">3 ($30)</option>
-                        <option value="4">4 ($38)</option>
-                        <option value="5">5 ($43)</option>
-                        <option value="6">6 ($47)</option>
-                        <option value="7">7 ($55)</option>
-                    </select>
-
-                    <input class="btn btn-info" id="submit" type="submit" />
-                </form>
-            </div>
+        <div class="col l6 m6" id="pub-options">
+            <!-- <div class="collection">
+                <a  class="collection-item"><span class="badge btn-flat waves-effect waves-light red"><i class="material-icons">+</i></span>Alan</a>
+                <a class="collection-item"><span class="new badge">4</span>Alan</a>
+                <a  class="collection-item">Alan</a>
+                <a  class="collection-item"><span class="badge">14</span>Alan</a>
+              </div> -->
         </div>
     </div>
-    <br><br><br>
-    <div class="row">
-        <div class="col l6 m6" id="map-display">
-            <h5>Map your locations</h5>
-        </div>
-        <div class="col l6 m6">
-            <h5>Remaining Pubs in this Tour: <span id="remaining">0</span>/<span id="total">0</span></h5>
-            <div class="collection" id="pub-options">
-
-            </div>        
-        </div>
-    </div>
-
-    <!-- Modal Structure -->
-    <div id="selected-pubs" class="modal modal-fixed-footer">
-        <div class="modal-content">
-            <h4 id="tour-title">Your Tour Name</h4>
-            <div class="row" id="pubs-container">
-
-            </div>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Make Reservation</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Make Reservation & Save Tour</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Cancel</a>
-        </div>
-    </div>
-    
     <br><br><br>
     <div class="row">
         <div class="slider">
