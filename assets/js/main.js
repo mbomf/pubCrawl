@@ -6,8 +6,12 @@ $(document).ready(function () {
     M.AutoInit();
 
     $('.slider').slider();
+    $('.dropdown-trigger').dropdown();
+    $('.parallax').parallax();
 
 });
+
+
 // $(document).ready(function () {
 //     $('.slider').slider();
 
