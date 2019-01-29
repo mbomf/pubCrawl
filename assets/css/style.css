@@ -1,3 +1,5 @@
+
+
 div {
     color: black;
 }
@@ -61,4 +63,12 @@ body {
 #pubs-icon {
     height: 50px;
     width: 50px;
+}
+
+h3 {
+    font-family: 'Pacifico', cursive;
+}
+
+h2 {
+    font-family: 'Pacifico', cursive;
 }
