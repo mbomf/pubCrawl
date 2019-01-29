@@ -13,6 +13,8 @@ $(document).ready(function () {
     var numBar;
 
     $('.slider').slider();
+    $('.dropdown-trigger').dropdown();
+    $('.parallax').parallax();
 
     function updateRemainingPubs(){
         pubRemaining = numBar-pubCounter;
@@ -154,6 +156,8 @@ $(document).ready(function () {
     // </div>
 
 });
+
+
 // $(document).ready(function () {
 //     $('.slider').slider();
 

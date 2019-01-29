@@ -6,28 +6,35 @@
     <title>PUBCRAWL</title>
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
     <!-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <!-- Local Files -->
     <link rel="stylesheet" href="assets/css/style.css">
     <script type="text/javascript" src="assets/js/main.js"></script>
 </head>
 
 <body>
     <div class="row">
-        <div class="col-12">
-            <header>
-                <div class="brand-logo center">
-                    <a href="#">
-                        <img src="https://i.pinimg.com/originals/ab/36/b7/ab36b74e3c9734793eed55d9b0bc24f4.png" width="230px"
-                            height="75px" style="align-content:center;" alt="">
-                    </a>
-                </div>
-            </header>
-        </div>
+        <nav id="header">
+            <a href="#" class="brand-logo center">
+                <img src="https://i.pinimg.com/originals/ab/36/b7/ab36b74e3c9734793eed55d9b0bc24f4.png" width="230px"
+                    height="75px" alt="">
+            </a>
+            <ul class="right hide-on-med-and-down" style="margin-left:50px;margin-top:45px;">
+                <li><a class="waves-effect waves-light btn" href="#">Create</a></li>
+                <li><a class="waves-effect waves-light btn" href="#viewexisting">View Existing</a></li>
+            </ul>
+
+        </nav>
     </div>
+
     <div class="row">
         <div class="slider">
             <ul class="slides">
@@ -61,11 +68,49 @@
 
     <div class="row">
         <div class="col s6 m6">
+            <br>
+            <div class="how-to-crawl" class="parallax-container">
+                <strong>
+                    <h3>How To Crawl</h3>
+                </strong>
+                <br>
+                <div id="location">
+                    <img class="parallax-container" id="location-icon" src="https://static.thenounproject.com/png/14236-200.png">
+                    <h5>
+                        <strong> Pick Your Starting Point</strong>
+                    </h5>
+                    <p>
+                        Check-in with our event staff at the registration <br> venue where you chose to begin the
+                        event.
+                    </p>
+                </div>
+                <div id="crawlers">
+                    <img class="parallax-container" id="crawlers-icon" src="https://static.thenounproject.com/png/655186-200.png">
+                    <h5>
+                        <strong>Pick Your Crawlers</strong>
+                    </h5>
+                    <p>
+                        Grab a group of friends to <br> have an adventure with!
+                    </p>
+                </div>
+                <div id="pubs">
+                    <img class="parallax-container" id="pubs-icon" src="https://cacouledesource.ch/wp-content/uploads/2016/12/drink-beer-jar.png">
+                    <h5>
+                        <strong>Pick Your Pubs</strong>
+                    </h5>
+                    <p>
+                        Scour the city’s top-rated venues <br> and partake in awesome drink specials!
+                    </p>
+                </div>
+
+            </div>
+
         </div>
-        <div class="col l6 m6">
+        <div class="col l6 m6" id="createCrawl">
+            <br>
             <div id="City Form">
                 <h2>Time to Get Shwasted.</h2>
-                <h4> Pick your PubCrawl Starting Point! </h4>
+                <h4>Pick your PubCrawl Starting Point!</h4>
                 <br>
                 <form id="calculate-route" name="calculate-route" action="#" method="get">
                     <label for="from" style="font-size:25px;">Where Are You Crawling From</label>
@@ -103,8 +148,7 @@
                         <option value="6">6 ($47)</option>
                         <option value="7">7 ($55)</option>
                     </select>
-
-                    <input class="btn btn-info" id="submit" type="submit" />
+                    <input class="btn btn-info #d81b60 pink darken-1" id="submit" type="submit" style="text-shadow: 1em;" />
                 </form>
             </div>
         </div>
@@ -139,10 +183,27 @@
     
     <br><br><br>
     <div class="row">
+
         <div class="slider">
             <ul class="slides">
                 <li>
                     <img style="align-content:center;" src="assets/images/pubCrawlBackground4.png">
+                    <!-- random image -->
+                    <div class="caption center-align">
+                        <h3>Check Out One of Our</h3>
+                        <h5 class="light grey-text text-lighten-3">Already Completed Pub Crawls!</h5>
+                    </div>
+                </li>
+                <li>
+                    <img style="align-content:center;" src="assets/images/pubCrawlBackground5.png">
+                    <!-- random image -->
+                    <div class="caption center-align">
+                        <h3>Check Out One of Our</h3>
+                        <h5 class="light grey-text text-lighten-3">Already Completed Pub Crawls!</h5>
+                    </div>
+                </li>
+                <li>
+                    <img style="align-content:center;" src="assets/images/pubCrawlBackground6.png">
                     <!-- random image -->
                     <div class="caption center-align">
                         <h3>Check Out One of Our</h3>
@@ -154,13 +215,24 @@
     </div>
 
     <div class="row">
+        <div class="col s12">
+            <strong>
+                <h3 style="text-align:center;">View Some of Our Existing Itineraries</h3>
+            </strong>
+            <h5 style="text-align: center; font-size: 20px;">
+               We have the best Itineraries in the Business. <br> Check out Some of our previously completed Pub Crawls and <br> see what adventures you can plan with your friends!
+            </h5>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-3">
-            <div class="card">
+            <div class="card" id="viewexisting">
                 <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" src="assets/images/cardPicMiami.png">
                 </div>
                 <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">My Latest Crawl<i class="material-icons right">$47/person</i></span>
+                    <span class="card-title activator grey-text text-darken-4">My Latest Crawl<i class="material-icons right"
+                            style="font-size:35px;">$47/p</i></span>
                     <p><a href="#">Create Your Own Itinerary</a></p>
                 </div>
                 <div class="card-reveal">
@@ -202,7 +274,8 @@
                     <img class="activator" src="assets/images/cardPicManhattan.png">
                 </div>
                 <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">My Third Crawl<i class="material-icons right">$55/person</i></span>
+                    <span class="card-title activator grey-text text-darken-4">My Third Crawl<i class="material-icons right"
+                            style="font-size:35px;">$55/p</i></span>
                     <p><a href="#">Create Your Own Itinerary</a></p>
                 </div>
                 <div class="card-reveal">
@@ -244,7 +317,8 @@
                     <img class="activator" src="assets/images/cardPicIbiza.png">
                 </div>
                 <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">My Second Crawl<i class="material-icons right">$30/person</i></span>
+                    <span class="card-title activator grey-text text-darken-4">My Second Crawl<i class="material-icons right"
+                            style="font-size:35px;">$30/p</i></span>
                     <p><a href="#">Create Your Own Itinerary</a></p>
                 </div>
                 <div class="card-reveal">
@@ -286,7 +360,8 @@
                     <img class="activator" src="assets/images/cardPicVegas.png">
                 </div>
                 <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">My First Crawl<i class="material-icons right">$38/person</i></span>
+                    <span class="card-title activator grey-text text-darken-4">My First Crawl<i class="material-icons right"
+                            style="font-size:35px;">$38/p</i></span>
                     <p><a href="#">Create Your Own Itinerary</a></p>
                 </div>
                 <div class="card-reveal">
@@ -322,32 +397,44 @@
                 </div>
             </div>
         </div>
-
     </div>
-
     <footer class="page-footer">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
-                    <h5 class="white-text">Footer Content</h5>
-                    <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                        content.</p>
+                    <h5 style="font-family: 'Pacifico', cursive;" class="white-text">Join Us For Your Next Pub Crawl!</h5>
+                    <p class="grey-text text-lighten-4">Make the memories of a lifetime with friends, or family, or
+                        both, and
+                        come have an epic time at one of your customized Pub Crawls!
+                        <br><br>
+                        <h5 style="font-family: 'Pacifico', cursive;" class="white-text">Email Us To RSVP Today!</h5>
+                        <ul>
+                            <li>
+                                <a href="#" style="color:white;">
+                                    support@pubcrawlserryday.com
+                                </a>
+                            </li>
+                        </ul>
+                    </p>
                 </div>
                 <div class="col l4 offset-l2 s12">
                     <h5 class="white-text">Links</h5>
                     <ul>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                        <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                        <li><a class="grey-text text-lighten-3" target="blank" href="https://pubcrawls.com/">PubCrawls.com</a></li>
+                        <li><a class="grey-text text-lighten-3" target="blank" href="https://miamibarcrawls.com/">Miami
+                                Bar Crawls</a></li>
+                        <li><a class="grey-text text-lighten-3" target="blank" href="https://www.supercall.com/culture/what-is-bar-crawl-ideas">Pub
+                                Crawl How To</a></li>
                     </ul>
+                    <a href="#">
+                        <img class="activator" src="assets/images/social-media-icons-black-png-5.png" style="width:200px;height:200px;">
+                    </a>
                 </div>
             </div>
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2014 Copyright Text
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                © 2019 Copyright Pub Crawl ErryDay LLC.,
             </div>
         </div>
     </footer>
