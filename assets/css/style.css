@@ -61,6 +61,11 @@ body {
     width: 50px;
 }
 
+.btn {
+    background: rgb(255, 0, 89);
+}
+
+
 #crawlers-icon {
     height: 65px;
     width: 65px;
