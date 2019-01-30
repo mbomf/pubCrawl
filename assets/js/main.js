@@ -28,6 +28,8 @@ $(document).ready(function () {
     $("#submit").on("click", function(event) {
         event.preventDefault();
 
+        
+
         locationLat = $("#crawlersCity option:selected").attr("data-latitude");
         locationLong = $("#crawlersCity option:selected").attr("data-longitude");
         numPeople = $("#crawlersNum option:selected").val();
