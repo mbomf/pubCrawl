@@ -105,9 +105,12 @@ $(document).ready(function () {
         })
     });
 
+
+    //creates the modal with the selected pub information
     $(document).on("click", ".add-btn", function(){
 
         $(this).addClass("disabled");
+        
         var pubCardVar = $("<div>");
         pubCardVar.addClass("col s6");
         pubCardVar.attr("id","pub-card");
