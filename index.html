@@ -13,7 +13,6 @@
     <!-- Google Maps -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMD3ojp-P28ggup4xeFUZI9i6rYDJwRNU"></script>
-   
     <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -108,54 +107,54 @@
                 </div>
 
             </div>
-</div>
         </div>
-        <div class="col l6 m6" id="createCrawl">
+    </div>
+    <div class="col l6 m6" id="createCrawl">
+        <br>
+        <div id="City Form">
+            <h2>Time to Get Shwasted.</h2>
+            <h4>Pick your PubCrawl Starting Point!</h4>
             <br>
-            <div id="City Form">
-                <h2>Time to Get Shwasted.</h2>
-                <h4>Pick your PubCrawl Starting Point!</h4>
-                <br>
-                <form id="calculate-route" name="calculate-route" action="#" method="get">
-                    <label for="from" style="font-size:25px;">Where Are You Crawling From</label>
-                    <!-- <input class="z-depth-5" type="text" id="from" name="from" required="required" placeholder="Search By City or Address"
+            <form id="calculate-route" name="calculate-route" action="#" method="get">
+                <label for="from" style="font-size:25px;">Where Are You Crawling From</label>
+                <!-- <input class="z-depth-5" type="text" id="from" name="from" required="required" placeholder="Search By City or Address"
                         size="30" />
                     <a id="from-link" href="#">Get my position</a> -->
-                    <select id="crawlersNum">
-                        <option id="city" data-latitude="25.78548" data-longitude="-80.19095" value="1">Miami</option>
-                        <option id="city" data-latitude="40.79587" data-longitude="-73.96706" value="2">Manhattan</option>
-                        <option id="city" data-latitude="38.91330" data-longitude="1.43262" value="3">Ibiza</option>
-                        <option id="city" data-latitude="36.16607" data-longitude="-115.16467" value="4">Vegas</option>
-                        <option id="city" data-latitude="40.41466" data-longitude="-3.69724" value="5">Madrid</option>
-                    </select>
-                    <div></div>
-                    <br>
-                    <label for="crawlersNum" style="font-size:25px;">How Many Freinds Are You Crawling With?</label>
-                    <select id="crawlersNum">
-                        <option value="1">1 Crawler</option>
-                        <option value="2">2 Crawlers</option>
-                        <option value="3">3 Crawlers</option>
-                        <option value="4">4 Crawlers</option>
-                        <option value="5">5 Crawlers</option>
-                        <option value="6">6 Crawlers</option>
-                        <option value="7">7 Crawlers</option>
-                        <option value="8">8 Crawlers</option>
-                    </select>
-                    <br>
-                    <label for="crawlingWith" style="font-size:25px;">How Many Pubs Would You Like To Crawl?</label>
-                    <select id="pubsNum">
-                        <option value="1">1 ($15)</option>
-                        <option value="25">2 ($25)</option>
-                        <option value="30">3 ($30)</option>
-                        <option value="38">4 ($38)</option>
-                        <option value="43">5 ($43)</option>
-                        <option value="47">6 ($47)</option>
-                        <option value="55">7 ($55)</option>
-                    </select>
-                    <input class="btn btn-info #d81b60 pink darken-1" id="submit" type="submit" style="text-shadow: 1em;" />
-                </form>
-            </div>
+                <select id="crawlersNum">
+                    <option id="city" data-latitude="25.78548" data-longitude="-80.19095" value="1">Miami</option>
+                    <option id="city" data-latitude="40.79587" data-longitude="-73.96706" value="2">Manhattan</option>
+                    <option id="city" data-latitude="38.91330" data-longitude="1.43262" value="3">Ibiza</option>
+                    <option id="city" data-latitude="36.16607" data-longitude="-115.16467" value="4">Vegas</option>
+                    <option id="city" data-latitude="40.41466" data-longitude="-3.69724" value="5">Madrid</option>
+                </select>
+                <div></div>
+                <br>
+                <label for="crawlersNum" style="font-size:25px;">How Many Freinds Are You Crawling With?</label>
+                <select id="crawlersNum">
+                    <option value="1">1 Crawler</option>
+                    <option value="2">2 Crawlers</option>
+                    <option value="3">3 Crawlers</option>
+                    <option value="4">4 Crawlers</option>
+                    <option value="5">5 Crawlers</option>
+                    <option value="6">6 Crawlers</option>
+                    <option value="7">7 Crawlers</option>
+                    <option value="8">8 Crawlers</option>
+                </select>
+                <br>
+                <label for="crawlingWith" style="font-size:25px;">How Many Pubs Would You Like To Crawl?</label>
+                <select id="pubsNum">
+                    <option value="1">1 ($15)</option>
+                    <option value="25">2 ($25)</option>
+                    <option value="30">3 ($30)</option>
+                    <option value="38">4 ($38)</option>
+                    <option value="43">5 ($43)</option>
+                    <option value="47">6 ($47)</option>
+                    <option value="55">7 ($55)</option>
+                </select>
+                <input class="btn btn-info #d81b60 pink darken-1" id="submit" type="submit" style="text-shadow: 1em;" />
+            </form>
         </div>
+    </div>
     </div>
     <br><br><br>
     <div class="row">
