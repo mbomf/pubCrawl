@@ -185,6 +185,30 @@ $(document).ready(function () {
         updateRemainingPubs();
 
     });
+    // var mapProp= {
+    //     center:new google.maps.LatLng(51.508742,-0.120850),
+    //     zoom:5,
+    //   };
+    //   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    //   }
+    //   });
+    // var querylink= "https://maps.googleapis.com/maps/api/js?key=AIzaSyBMD3ojp-P28ggup4xeFUZI9i6rYDJwRNU";
+    // console.log(querylink);
+    // $.ajax()({
+    //     url=querylink
+    //     method="GET"
+    //    });
+    // function myMap() {
+    //     var mapProp= {
+    //       center:new google.maps.LatLng(51.508742,-0.120850),
+    //       zoom:5,
+    //     };
+    //     var map = new google.maps.Map(document.getElementById("map"),mapProp);
+    //     }
+    
+
+      
+
 
 });
 

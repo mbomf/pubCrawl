@@ -88,3 +88,13 @@ h2 {
     font-family: 'Pacifico', cursive;
     font-size: 25px;
 }
+
+#map{
+    height: 50%;
+    margin: 100px;
+    padding:20px;
+    position: relative;
+    top: 770px;
+    left:-30px;
+   
+}
