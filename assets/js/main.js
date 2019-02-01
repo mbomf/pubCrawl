@@ -7,6 +7,11 @@ $(document).ready(function () {
 
     var pubCounter = 0;
     var pubRemaining;
+    var city;
+    var catId;
+    var limit = "25";
+    var radius = "5000";
+    var venueId;
     var locationLat;
     var locationLong;
     var numPeople;
@@ -30,16 +35,16 @@ $(document).ready(function () {
 
 
 
-        locationLat = $("#crawlersCity option:selected").attr("data-latitude");
-        locationLong = $("#crawlersCity option:selected").attr("data-longitude");
+        city = $("#crawlersCity option:selected").val();
+        // locationLong = $("#crawlersCity option:selected").attr("data-longitude");
         numPeople = $("#crawlersNum option:selected").val();
         numBar = $("#pubsNum option:selected").val();
         
         
-        console.log(locationLat +"|"+ locationLong +"|"+ numPeople+"|"+numBar);
+        console.log(city +"|"+ numPeople+"|"+numBar);
         var newItinObj = {
-            locationLat : locationLat,
-            locationLong : locationLong,
+            city : city,
+            // locationLong : locationLong,
             numPeople : numPeople,
             numBar : numBar
         };
@@ -51,45 +56,81 @@ $(document).ready(function () {
         $("#pubsNum").val("");
         $("#total").text(numBar);
 
-        var queryURL = "https://api.yelp.com/v3/businesses/search?term=bar&radius=2000&limit=10&latitude="+locationLat+"&longitude="+locationLong;
-        // var queryURL = "https://api.yelp.com/v3/businesses/search?term=food";
-
-        console.log(queryURL);
-
-        $.ajax({
-            url: queryURL,
-            method: "GET",
-            headers:{
-                "Authorization": "Bearer gGMhkkk4HNsk4goBJ5yoeMyU1To5gPtxmSRDD9hAgGv7Sd10f6CriTWLt-Yhjy_fl7ZOQNSbMh1OurFv1pdndux2FNNRcXGu9TnEBeNwlU1qhI71SIoMEDZxkLNMXHYx"
+        var settings = {
+            "async": true,
+            "url": "https://ancient-ocean-97660.herokuapp.com/categoeryId?city="+city+"&client_id=HT0AF0YCBHXL00VK1ZSEAXQVPEC3Y2UTA5RIB4UMALZZUERC&client_secret=2BBILRGSDF0ZYSAK4KH50VZSFO4FCR0MZLXPWDSZRNKQ0UST&v=20190110&radius=10&categoryId=4bf58dd8d48988d11d941735&limit=10",
+            "method": "GET",
+            "headers": {
+                "cache-control": "no-cache",
+                "Postman-Token": "bcf5dd2b-3c65-449d-83ba-701d5d2ce430"
             }
-        }).then(function(response){
-
+        }
             
-            var results = response.businesses;
-            console.log(results);
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+
+        
+            var results = response.response.venues;
+            var venueId;
+            // console.log("results j",results[j]);
 
             for (var j = 0; j < results.length; j++){
-                  
+                
+                venueId = results[j].id;
+                var venueName = results[j].name; 
+                console.log("results j",venueName);
+                var venueAddress = results[j].location.formattedAddress;
                 
 
-                var anchorVar = $("<a>");
-                anchorVar.addClass("collection-item");
-                anchorVar.text(results[j].name);
+                console.log(venueId);
 
-                var spanVar = $("<span>");
-                spanVar.addClass("badge btn-flat waves-effect waves-light red add-btn");
-                spanVar.attr("data-barname", results[j].name);
-                spanVar.attr("data-baraddress", results[j].location.display_address);
-                spanVar.attr("data-barrating", results[j].rating);
+                var settings1 = {
+                    "async": true,
+                    "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+venueId,
+                    "method": "GET",
+                    "headers": {
+                        "Content-Type": "application/json",
+                        "cache-control": "no-cache",
+                        "Postman-Token": "4953f006-dbbb-4411-8bf1-9a7f7781dd4d"
+                    },
+                    "processData": false,
+                    "data": ""
+                }
+                    
+                $.ajax(settings1).done(function (venue) {
+                    // console.log("VenueResponse: "+venue);
+                
+                    var venueResults = venue.response.venue;
+                    // console.log(spanVar);
+                    
 
-                var iTagVar = $("<i>");
-                iTagVar.addClass("material-icons");
-                iTagVar.text("+");
+                // })
+                    
+                    var anchorVar = $("<a>");
+                    anchorVar.addClass("collection-item");
+                    // anchorVar.text(results[j].name);
+                    anchorVar.text(venueName);
 
-                spanVar.prepend(iTagVar);
-                anchorVar.prepend(spanVar);
+                    console.log("venue name", venueName)
 
-                $("#pub-options").prepend(anchorVar); 
+                    // var spanVar = $("<span>");
+                    var spanVar = $("<span>");
+                    spanVar.addClass("badge btn-flat waves-effect waves-light red add-btn");
+                    spanVar.attr("data-barname", venueName);
+                    spanVar.attr("data-baraddress", venueAddress);
+                    spanVar.attr("data-barrating", venueResults.rating);
+                    // spanVar.attr("data-barrating", "5");
+
+                    var iTagVar = $("<i>");
+                    iTagVar.addClass("material-icons");
+                    iTagVar.text("+");
+
+                    spanVar.prepend(iTagVar);
+                    anchorVar.prepend(spanVar);
+
+                    $("#pub-options").prepend(anchorVar); 
+                })
+                    
             }
             updateRemainingPubs();
 
@@ -100,7 +141,6 @@ $(document).ready(function () {
             modalButVar.attr("id", "#show-tour");
             modalButVar.text("Show Tour");
             $("#pub-options").append(modalButVar);
-
 
         })
     });
@@ -173,6 +213,13 @@ $(document).ready(function () {
 });
 
 
+// pub category Id: 52e81612bcbc57f1066b7a06, 4bf58dd8d48988d11b941735
+// bar category Id: 4bf58dd8d48988d116941735, 4bf58dd8d48988d122941735
+// beer bat ID: 56aa371ce4b08b9a8d57356c, 52e81612bcbc57f1066b7a0d
+// brewery Id: 50327c8591d4c4b30a586d5d
+// english restaurant Id: 52e81612bcbc57f1066b7a05
 
+//query for venues: "https://api.foursquare.com/v2/venues/search?client_id=HT0AF0YCBHXL00VK1ZSEAXQVPEC3Y2UTA5RIB4UMALZZUERC&client_secret=2BBILRGSDF0ZYSAK4KH50VZSFO4FCR0MZLXPWDSZRNKQ0UST&near=" + city + "&categoryId=" + catId + "limit=" + limit + "&radius=" + radius;
+//query for rating: "https://api.foursquare.com/v2/venues/" + venueId + "?client_id=HT0AF0YCBHXL00VK1ZSEAXQVPEC3Y2UTA5RIB4UMALZZUERC&client_secret=2BBILRGSDF0ZYSAK4KH50VZSFO4FCR0MZLXPWDSZRNKQ0UST";
 
 
