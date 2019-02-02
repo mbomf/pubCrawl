@@ -54,7 +54,7 @@ $(document).ready(function () {
         // locationLong = $("#crawlersCity option:selected").attr("data-longitude");
         numPeople = $("#crawlersNum option:selected").val();
         numBar = $("#pubsNum option:selected").val();
-        
+        console.log(pubCounter+"|"+ pubRemaining)
         
         console.log(city +"|"+ numPeople+"|"+numBar);
 
@@ -216,6 +216,30 @@ $(document).ready(function () {
         updateRemainingPubs();
 
     });
+    // var mapProp= {
+    //     center:new google.maps.LatLng(51.508742,-0.120850),
+    //     zoom:5,
+    //   };
+    //   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    //   }
+    //   });
+    // var querylink= "https://maps.googleapis.com/maps/api/js?key=AIzaSyBMD3ojp-P28ggup4xeFUZI9i6rYDJwRNU";
+    // console.log(querylink);
+    // $.ajax()({
+    //     url=querylink
+    //     method="GET"
+    //    });
+    // function myMap() {
+    //     var mapProp= {
+    //       center:new google.maps.LatLng(51.508742,-0.120850),
+    //       zoom:5,
+    //     };
+    //     var map = new google.maps.Map(document.getElementById("map"),mapProp);
+    //     }
+    
+
+      
+
 
     // firebase
     $(document).on("click", "#make-reservation", function() {
