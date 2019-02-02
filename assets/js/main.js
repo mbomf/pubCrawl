@@ -3,35 +3,50 @@ console.log("works");
 
 // Or with jQuery
 $(document).ready(function () {
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDwG5O7eb_GM1WUC6mVVv6GtICFe2lwFPc",
+        authDomain: "pubcrawl-3f813.firebaseapp.com",
+        databaseURL: "https://pubcrawl-3f813.firebaseio.com",
+        projectId: "pubcrawl-3f813",
+        storageBucket: "pubcrawl-3f813.appspot.com",
+        messagingSenderId: "598599678829"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
     M.AutoInit();
 
     var pubCounter = 0;
     var pubRemaining;
     var city;
-    var catId;
-    var limit = "25";
-    var radius = "5000";
+    var venueLat;
+    var venueLong;
+    var venueName;
     var venueId;
-    var locationLat;
-    var locationLong;
+    var venueAddress;
     var numPeople;
     var numBar;
+    var pubArray = [];
 
     $('.slider').slider();
     $('.dropdown-trigger').dropdown();
     $('.parallax').parallax();
+    $('.tooltipped').tooltip();
 
     function updateRemainingPubs(){
         pubRemaining = numBar-pubCounter;
         $("#remaining").text(pubRemaining);
         if (pubRemaining==0) {
             $(".add-btn").addClass("disabled");
+            
         }        
     };
 
     // Start capture of input
     $("#submit").on("click", function(event) {
         event.preventDefault();
+        $("#submit").addClass("disabled");
 
 
 
@@ -42,14 +57,6 @@ $(document).ready(function () {
         
         
         console.log(city +"|"+ numPeople+"|"+numBar);
-        var newItinObj = {
-            city : city,
-            // locationLong : locationLong,
-            numPeople : numPeople,
-            numBar : numBar
-        };
-
-        // database.push(newItinObj);
 
         $("#crawlersCity").val("");
         $("#crawlersNum").val("");
@@ -58,7 +65,7 @@ $(document).ready(function () {
 
         var settings = {
             "async": true,
-            "url": "https://ancient-ocean-97660.herokuapp.com/categoeryId?city="+city+"&client_id=HT0AF0YCBHXL00VK1ZSEAXQVPEC3Y2UTA5RIB4UMALZZUERC&client_secret=2BBILRGSDF0ZYSAK4KH50VZSFO4FCR0MZLXPWDSZRNKQ0UST&v=20190110&radius=10&categoryId=4bf58dd8d48988d11d941735&limit=10",
+            "url": "https://ancient-ocean-97660.herokuapp.com/categoeryId?city="+city+"&client_id=HT0AF0YCBHXL00VK1ZSEAXQVPEC3Y2UTA5RIB4UMALZZUERC&client_secret=2BBILRGSDF0ZYSAK4KH50VZSFO4FCR0MZLXPWDSZRNKQ0UST&v=20190110&radius=5&categoryId=4bf58dd8d48988d11d941735&limit=10",
             "method": "GET",
             "headers": {
                 "cache-control": "no-cache",
@@ -71,65 +78,42 @@ $(document).ready(function () {
 
         
             var results = response.response.venues;
-            var venueId;
+            
             // console.log("results j",results[j]);
 
             for (var j = 0; j < results.length; j++){
                 
                 venueId = results[j].id;
-                var venueName = results[j].name; 
-                console.log("results j",venueName);
-                var venueAddress = results[j].location.formattedAddress;
+                venueName = results[j].name; 
                 
+                venueAddress = results[j].location.formattedAddress;
+                venueLat = results[j].location.lat;
+                venueLong = results[j].location.lng;                
 
-                console.log(venueId);
+                var anchorVar = $("<a>");
+                anchorVar.addClass("collection-item tooltipped");
+                anchorVar.text(venueName);
+                anchorVar.attr("data-position", "top");
+                // anchorVar.attr("data-tooltip", "ratingToShow");
+                anchorVar.attr("data-barid", venueId);
 
-                var settings1 = {
-                    "async": true,
-                    "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+venueId,
-                    "method": "GET",
-                    "headers": {
-                        "Content-Type": "application/json",
-                        "cache-control": "no-cache",
-                        "Postman-Token": "4953f006-dbbb-4411-8bf1-9a7f7781dd4d"
-                    },
-                    "processData": false,
-                    "data": ""
-                }
-                    
-                $.ajax(settings1).done(function (venue) {
-                    // console.log("VenueResponse: "+venue);
-                
-                    var venueResults = venue.response.venue;
-                    // console.log(spanVar);
-                    
 
-                // })
-                    
-                    var anchorVar = $("<a>");
-                    anchorVar.addClass("collection-item");
-                    // anchorVar.text(results[j].name);
-                    anchorVar.text(venueName);
+                var spanVar = $("<span>");
+                spanVar.addClass("badge btn-flat waves-effect waves-light red add-btn");
+                spanVar.attr("data-barname", venueName);
+                spanVar.attr("data-baraddress", venueAddress);
+                spanVar.attr("data-barlat", venueLat);
+                spanVar.attr("data-barlong", venueLong);
+                spanVar.attr("data-barid", venueId);
 
-                    console.log("venue name", venueName)
+                var iTagVar = $("<i>");
+                iTagVar.addClass("material-icons");
+                iTagVar.text("+");
 
-                    // var spanVar = $("<span>");
-                    var spanVar = $("<span>");
-                    spanVar.addClass("badge btn-flat waves-effect waves-light red add-btn");
-                    spanVar.attr("data-barname", venueName);
-                    spanVar.attr("data-baraddress", venueAddress);
-                    spanVar.attr("data-barrating", venueResults.rating);
-                    // spanVar.attr("data-barrating", "5");
+                spanVar.prepend(iTagVar);
+                anchorVar.prepend(spanVar);
 
-                    var iTagVar = $("<i>");
-                    iTagVar.addClass("material-icons");
-                    iTagVar.text("+");
-
-                    spanVar.prepend(iTagVar);
-                    anchorVar.prepend(spanVar);
-
-                    $("#pub-options").prepend(anchorVar); 
-                })
+                $("#pub-options").prepend(anchorVar);
                     
             }
             updateRemainingPubs();
@@ -150,6 +134,53 @@ $(document).ready(function () {
     $(document).on("click", ".add-btn", function(){
 
         $(this).addClass("disabled");
+
+        var ratingToShow;
+        var idToAjax = $(this).attr("data-barid");
+        var settings1 = {
+            "async": true,
+            "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+idToAjax,
+            "method": "GET",
+            "headers": {
+                "Content-Type": "application/json",
+                "cache-control": "no-cache",
+                "Postman-Token": "4953f006-dbbb-4411-8bf1-9a7f7781dd4d"
+            },
+            "processData": false,
+            "data": ""
+        }
+                    
+        $.ajax(settings1).done(function (venue) {
+            // console.log("VenueResponse: "+venue);
+        
+            var venueResults = venue.response.venue;
+            // console.log("on hover:", venueResults);
+
+            ratingToShow = venueResults.rating;
+            console.log("rating:", ratingToShow);
+
+        });
+ 
+        var nameToObj = $(this).attr("data-barname");
+        var addressToObj = $(this).attr("data-baraddress");
+        var latToObj = $(this).attr("data-barlat");
+        var longToObj = $(this).attr("data-barlong");
+        var idToObj = $(this).attr("data-barid");
+        var ratingToObj = ratingToShow;
+
+        var newPubObj = {
+            name : nameToObj,
+            address : addressToObj,
+            latitude : latToObj,
+            longitude : longToObj,
+            id: idToObj,
+            rating: ratingToObj
+        };
+
+        pubArray.push(newPubObj);
+
+        console.log(pubArray);
+        
         
         var pubCardVar = $("<div>");
         pubCardVar.addClass("col s6");
@@ -170,7 +201,7 @@ $(document).ready(function () {
         pAddressVar.text("Address: "+$(this).attr("data-baraddress"));
 
         var pRatingVar = $("<p>");
-        pRatingVar.text("Rating: "+$(this).attr("data-barrating"));
+        pRatingVar.text("Rating: "+ratingToShow);
 
         cardContentVar.append(cardTitleVar);
         cardContentVar.append(pAddressVar);
@@ -186,8 +217,82 @@ $(document).ready(function () {
 
     });
 
-});
+    // firebase
+    $(document).on("click", "#make-reservation", function() {
+        var tourName = $("#tour-name").val().trim();
+        var newTourObj = {
+            tourName : tourName,
+            city : city,
+            pubs : pubArray
+        };
 
+        database.ref().push(newTourObj);        
+    });
+
+    $(document).on("hover", ".collection-item", function() {
+        
+        var ratingToShow;
+        var idToAjax = $(this).attr("data-barid");
+        var settings1 = {
+            "async": true,
+            "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+idToAjax,
+            "method": "GET",
+            "headers": {
+                "Content-Type": "application/json",
+                "cache-control": "no-cache",
+                "Postman-Token": "4953f006-dbbb-4411-8bf1-9a7f7781dd4d"
+            },
+            "processData": false,
+            "data": ""
+        }
+                    
+        $.ajax(settings1).done(function (venue) {
+            // console.log("VenueResponse: "+venue);
+        
+            var venueResults = venue.response.venue;
+            // console.log("on hover:", venueResults);
+
+            ratingToShow = venueResults.rating;
+            console.log("rating:", ratingToShow);
+
+        });
+        $(this).attr("data-tooltip", ratingToShow);
+        // $("#pub-options").append(modalButVar); THIS COULD WORK!!!
+    
+        
+
+    }); 
+
+    
+    //show cards on loading and on adding child
+    // database.ref().on("child_added", function(rowAdded) {
+    //     console.log(rowAdded.val());
+
+    //     var nameCard = rowAdded.val().tourName;
+    //     var cityCard = rowAdded.val().city;
+    //     var pubsCard = rowAdded.val().pubArray;
+    //     var imageCard = assets/images/cardPicManhattan.png;
+
+    //     var toAppendDiv = $("<div>");
+    //     toAppendDiv.addClass("col-lg-3");
+
+    //     var newTourToAdd = $("<div>");
+    //     newTourToAdd.addClass("card");
+    //     newTourToAdd.attr("id", "viewexisting");
+
+    //     var imgDiv = $("<div>");
+    //     imgDiv.addClass("card-image waves-effect waves-block waves-light");
+
+    //     var imgTour = $("<img>");
+    //     imgTour.addClass("activator");
+    //     imgTour.attr("source", imageCard);
+
+    //     var titleDiv = $("<div>");
+
+
+    //     $("#cards-display").append($(toAppendDiv));
+    // });
+});
 
 // pub category Id: 52e81612bcbc57f1066b7a06, 4bf58dd8d48988d11b941735
 // bar category Id: 4bf58dd8d48988d116941735, 4bf58dd8d48988d122941735

@@ -171,14 +171,14 @@
     <!-- Modal Structure -->
     <div id="selected-pubs" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <h4 id="tour-title">Your Tour Name</h4>
+            <label for="tour-name">Your Tour Name:</h4>
+                <input type="text" id="tour-name" >
             <div class="row" id="pubs-container">
 
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Make Reservation</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Make Reservation & Save Tour</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat " id="make-reservation" >Make Reservation & Save Tour</a>
             <a href="#!" class="modal-close waves-effect waves-green btn-flat ">Cancel</a>
         </div>
     </div>
@@ -226,11 +226,11 @@
             </h5>
         </div>
     </div>
-    <div class="row">
+    <div class="row" id="cards-display">
         <div class="col-lg-3">
             <div class="card" id="viewexisting">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="assets/images/cardPicMiami.png">
+                    <img class="activator" src="assets/images/cardPicMiami.png" id="some-pic">
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">My Latest Crawl<i class="material-icons right"
@@ -441,7 +441,10 @@
         </div>
     </footer>
 
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+
 </body>
+
 
 
 </html>
