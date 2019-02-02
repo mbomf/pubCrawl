@@ -296,8 +296,6 @@ $(document).ready(function () {
         cardImgDiv.attr("class", "card-image waves-effect waves-block waves-light");
 
         //creating and appending card image
-        var pictureNum = Math.floor(Math.random() * 5) + 1;
-        console.log(pictureNum);
         console.log(cityCard);
 
         cardImg = $("<img>");
@@ -350,24 +348,30 @@ $(document).ready(function () {
         var revealCardContentDiv = $("<div>");
         revealCardContentDiv.attr("class", "locations");
 
-        // for(i=0; i<pubArray.length; i++){
-            var name = pubsCard[0].name;
-            console.log(name);
-            var address = pubsCard[0].address;
-            console.log(address);
+        var revealLocationDiv = $("<div>");
+        var cardOpenTitle = $("<p>")
 
-            var revealLocationDiv = $("<div>");
-            revealLocationDiv.attr("id", name);
+        cardOpenTitle.text(cardClosedTitle  + " - " + cityCard);
+        revealLocationDiv.append(cardOpenTitle);
+
+        console.log(rowAdded.val());
+
+        for(var i=0; i<pubsCard.length; i++){
+
+            console.log(i);
             var revealLocationDivName = $("<h5>");
             var revealLocationDivAddress = $("<p>");
-            revealLocationDiv.text(cardClosedTitle);
-            console.log(cardClosedTitle);
-            revealLocationDiv.text(cityCard).attr("style", "font-size:17px;");
+            var name = pubsCard[i].name;
+            console.log(name);
+            var address = pubsCard[i].address;
+            console.log(address);
+
+            revealLocationDiv.attr("id", name);
             revealLocationDivName.text(name);
             revealLocationDivAddress.text(address);
             revealLocationDiv.append(revealLocationDivName);
             revealLocationDiv.append(revealLocationDivAddress);
-        // }
+        }
         
         revealCardContentDiv.append(revealLocationDiv);
 
