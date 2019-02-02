@@ -54,7 +54,6 @@ $(document).ready(function () {
         // locationLong = $("#crawlersCity option:selected").attr("data-longitude");
         numPeople = $("#crawlersNum option:selected").val();
         numBar = $("#pubsNum option:selected").val();
-        console.log(pubCounter+"|"+ pubRemaining)
         
         console.log(city +"|"+ numPeople+"|"+numBar);
 
@@ -91,11 +90,11 @@ $(document).ready(function () {
                 venueLong = results[j].location.lng;                
 
                 var anchorVar = $("<a>");
-                anchorVar.addClass("collection-item tooltipped");
+                anchorVar.addClass("collection-item");
                 anchorVar.text(venueName);
-                anchorVar.attr("data-position", "top");
+                // anchorVar.attr("data-position", "top");
                 // anchorVar.attr("data-tooltip", "ratingToShow");
-                anchorVar.attr("data-barid", venueId);
+                // anchorVar.attr("data-barid", venueId);
 
 
                 var spanVar = $("<span>");
@@ -135,53 +134,10 @@ $(document).ready(function () {
 
         $(this).addClass("disabled");
 
-        var ratingToShow;
-        var idToAjax = $(this).attr("data-barid");
-        var settings1 = {
-            "async": true,
-            "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+idToAjax,
-            "method": "GET",
-            "headers": {
-                "Content-Type": "application/json",
-                "cache-control": "no-cache",
-                "Postman-Token": "4953f006-dbbb-4411-8bf1-9a7f7781dd4d"
-            },
-            "processData": false,
-            "data": ""
-        }
-                    
-        $.ajax(settings1).done(function (venue) {
-            // console.log("VenueResponse: "+venue);
-        
-            var venueResults = venue.response.venue;
-            // console.log("on hover:", venueResults);
+        // var ratingToShow;
+        // var idToAjax = $(this).attr("data-barid");
 
-            ratingToShow = venueResults.rating;
-            console.log("rating:", ratingToShow);
 
-        });
- 
-        var nameToObj = $(this).attr("data-barname");
-        var addressToObj = $(this).attr("data-baraddress");
-        var latToObj = $(this).attr("data-barlat");
-        var longToObj = $(this).attr("data-barlong");
-        var idToObj = $(this).attr("data-barid");
-        var ratingToObj = ratingToShow;
-
-        var newPubObj = {
-            name : nameToObj,
-            address : addressToObj,
-            latitude : latToObj,
-            longitude : longToObj,
-            id: idToObj,
-            rating: ratingToObj
-        };
-
-        pubArray.push(newPubObj);
-
-        console.log(pubArray);
-        
-        
         var pubCardVar = $("<div>");
         pubCardVar.addClass("col s6");
         pubCardVar.attr("id","pub-card");
@@ -200,12 +156,12 @@ $(document).ready(function () {
         var pAddressVar = $("<p>");
         pAddressVar.text("Address: "+$(this).attr("data-baraddress"));
 
-        var pRatingVar = $("<p>");
-        pRatingVar.text("Rating: "+ratingToShow);
+        // var pRatingVar = $("<p>");
+        // pRatingVar.text("Rating: "+ratingToShow);
 
         cardContentVar.append(cardTitleVar);
         cardContentVar.append(pAddressVar);
-        cardContentVar.append(pRatingVar);
+        // cardContentVar.append(pRatingVar);
         
         cardVar.append(cardContentVar);
 
@@ -214,6 +170,84 @@ $(document).ready(function () {
         $("#pubs-container").append(pubCardVar);
         pubCounter++;
         updateRemainingPubs();
+
+        var nameToObj = $(this).attr("data-barname");
+        var addressToObj = $(this).attr("data-baraddress");
+        var latToObj = $(this).attr("data-barlat");
+        var longToObj = $(this).attr("data-barlong");
+        var idToObj = $(this).attr("data-barid");
+        // var ratingToObj = ratingToShow;
+
+        var newPubObj = {
+            name : nameToObj,
+            address : addressToObj,
+            latitude : latToObj,
+            longitude : longToObj,
+            id: idToObj,
+            // rating: ratingToObj
+        };
+
+        pubArray.push(newPubObj);
+
+        console.log("array",pubArray);
+
+
+        // var settings1 = {
+        //     "async": true,
+        //     "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+idToAjax,
+        //     "method": "GET",
+        //     "headers": {
+        //         "Content-Type": "application/json",
+        //         "cache-control": "no-cache",
+        //         "Postman-Token": "4953f006-dbbb-4411-8bf1-9a7f7781dd4d"
+        //     },
+        //     "processData": false,
+        //     "data": ""
+        // }
+                    
+        // $.ajax(settings1).done(function (venue) {
+        //     // console.log("VenueResponse: "+venue);
+        
+        //     var venueResults = venue.response.venue;
+            
+        //     ratingToShow = venueResults.rating;
+        //     console.log("rating:", ratingToShow);
+        //     // var pRatingVar = $("<p>");
+        //     // pRatingVar.text("Rating: "+ratingToShow);
+
+        //     // cardContentVar.append(cardTitleVar);
+        //     // cardContentVar.append(pAddressVar);
+        //     // cardContentVar.append(pRatingVar);
+            
+        //     // cardVar.append(cardContentVar);
+
+        //     // pubCardVar.append(cardVar);
+
+        //     // $("#pubs-container").append(pubCardVar);
+        //     // pubCounter++;
+        //     // updateRemainingPubs();
+
+        //     // var nameToObj = $(this).attr("data-barname");
+        //     // var addressToObj = $(this).attr("data-baraddress");
+        //     // var latToObj = $(this).attr("data-barlat");
+        //     // var longToObj = $(this).attr("data-barlong");
+        //     // var idToObj = $(this).attr("data-barid");
+        //     // var ratingToObj = ratingToShow;
+
+        //     // var newPubObj = {
+        //     //     name : nameToObj,
+        //     //     address : addressToObj,
+        //     //     latitude : latToObj,
+        //     //     longitude : longToObj,
+        //     //     id: idToObj,
+        //     //     rating: ratingToObj
+        //     // };
+
+        //     // pubArray.push(newPubObj);
+
+        //     // console.log("array",pubArray);
+
+        // });
 
     });
     // var mapProp= {
@@ -241,7 +275,7 @@ $(document).ready(function () {
       
 
 
-    // firebase
+    // send data to firebase
     $(document).on("click", "#make-reservation", function() {
         var tourName = $("#tour-name").val().trim();
         var newTourObj = {
@@ -253,39 +287,8 @@ $(document).ready(function () {
         database.ref().push(newTourObj);        
     });
 
-    $(document).on("hover", ".collection-item", function() {
-        
-        var ratingToShow;
-        var idToAjax = $(this).attr("data-barid");
-        var settings1 = {
-            "async": true,
-            "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+idToAjax,
-            "method": "GET",
-            "headers": {
-                "Content-Type": "application/json",
-                "cache-control": "no-cache",
-                "Postman-Token": "4953f006-dbbb-4411-8bf1-9a7f7781dd4d"
-            },
-            "processData": false,
-            "data": ""
-        }
-                    
-        $.ajax(settings1).done(function (venue) {
-            // console.log("VenueResponse: "+venue);
-        
-            var venueResults = venue.response.venue;
-            // console.log("on hover:", venueResults);
-
-            ratingToShow = venueResults.rating;
-            console.log("rating:", ratingToShow);
-
-        });
-        $(this).attr("data-tooltip", ratingToShow);
-        // $("#pub-options").append(modalButVar); THIS COULD WORK!!!
     
-        
-
-    }); 
+    // }); 
 
     
     //show cards on loading and on adding child
