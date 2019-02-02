@@ -115,7 +115,7 @@ $(document).ready(function () {
 
                 // var spanVar = $("<span>");
                 var spanVar = $("<span>");
-                spanVar.addClass("badge btn-flat waves-effect waves-light red add-btn");
+                spanVar.addClass("badge btn-flat waves-effect waves-light teal add-btn");
                 spanVar.attr("data-barname", venueName);
                 spanVar.attr("data-baraddress", venueAddress);
                 // spanVar.attr("data-barrating", venueResults.rating);
@@ -124,7 +124,9 @@ $(document).ready(function () {
 
                 var iTagVar = $("<i>");
                 iTagVar.addClass("material-icons");
+                iTagVar.attr("style", "color:white;");
                 iTagVar.text("+");
+
 
                 spanVar.prepend(iTagVar);
                 anchorVar.prepend(spanVar);
@@ -162,7 +164,7 @@ $(document).ready(function () {
         pubCard.addClass("card blue-grey darken-1");
 
         var cardContent = $("<div>");
-        cardContent.addClass("card-content white-text");
+        cardContent.addClass("card-content white-text #d81b60 pink darken-1");
         cardContent.attr("style", "height:auto;");
 
 
@@ -196,8 +198,8 @@ $(document).ready(function () {
         console.log(userBarName);
 
         //creating div row
-        var cardRow = $("<div>");
-        cardRow.attr("class", "row");
+        // var cardRow = $("<div>");
+        // cardRow.attr("class", "row");
 
 
         //creating div columns
@@ -212,7 +214,7 @@ $(document).ready(function () {
         newCardDiv.attr("class", "card");
         newCardDiv.attr("id", "viewexisting");
 
-        cardDivThree.append(newCardDiv)
+        cardDivThree.append(newCardDiv);
 
         //creating the card type
         cardImgDiv = $("<div>");
@@ -275,7 +277,7 @@ $(document).ready(function () {
 
         newCardDiv.append(iDivReveal);
         
-        $("#viewexisting").append(newCardDiv);
+        $("#existing-crawls").append(newCardDiv);
 
     });
 
