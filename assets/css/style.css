@@ -84,6 +84,20 @@ h2 {
     font-family: 'Pacifico', cursive;
 }
 
+h5 {
+    font-family: 'Merienda', cursive;
+}
+
+p {
+
+    font-family: 'Barlow', sans-serif;
+
+}
+
+span{
+    font-family: 'Barlow', sans-serif;
+}
+
 .material-icons {
     font-family: 'Pacifico', cursive;
     font-size: 25px;

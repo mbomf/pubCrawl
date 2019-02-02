@@ -15,8 +15,8 @@
     <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    
     <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Barlow|Merienda" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <!-- Local Files -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -142,14 +142,14 @@
                     </select>
                     <br>
                     <label for="pubsNum" style="font-size:25px;">How Many Pubs Would You Like To Crawl?</label>
-                    <select id="pubsNum">
-                        <option value="1">1 ($15)</option>
-                        <option value="2">2 ($25)</option>
-                        <option value="3">3 ($30)</option>
-                        <option value="4">4 ($38)</option>
-                        <option value="5">5 ($43)</option>
-                        <option value="6">6 ($47)</option>
-                        <option value="7">7 ($55)</option>
+                    <select id="pubsNumSelect">
+                        <option id="price" price="15" value="1">1 ($15)</option>
+                        <option id="price" price="25" value="2">2 ($25)</option>
+                        <option id="price" price="30" value="3">3 ($30)</option>
+                        <option id="price" price="38" value="4">4 ($38)</option>
+                        <option id="price" price="43" value="5">5 ($43)</option>
+                        <option id="price" price="47" value="6">6 ($47)</option>
+                        <option id="price" price="55" value="7">7 ($55)</option>
                     </select>
                     <input class="btn btn-info #d81b60 pink darken-1" id="submit"  type="submit" style="text-shadow: 1em;" />
                 </form>

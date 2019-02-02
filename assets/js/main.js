@@ -30,7 +30,6 @@ $(document).ready(function () {
     var numBar;
     var pubArray = [];
 
-
     $('.slider').slider();
     $('.dropdown-trigger').dropdown();
     $('.parallax').parallax();
@@ -51,10 +50,11 @@ $(document).ready(function () {
         city = $("#crawlersCity option:selected").val();
         console.log(city);
 
+        var totalCost = $("#price option:selected").val("price");
+        console.log(totalCost);
         // locationLong = $("#crawlersCity option:selected").attr("data-longitude");
         numPeople = $("#crawlersNum option:selected").val();
-        numBar = $("#pubsNum option:selected").val();
-
+        numBar = $("#pubsNumSelect option:selected").val();
 
         console.log(city + "|" + numPeople + "|" + numBar);
         // var newItinObj = {
@@ -70,6 +70,8 @@ $(document).ready(function () {
         $("#crawlersNum").val("");
         $("#pubsNum").val("");
         $("#total").text(numBar);
+
+
         console.log(numBar);
 
         var settings = {
@@ -258,6 +260,7 @@ $(document).ready(function () {
     database.ref().on("child_added", function (rowAdded) {
         console.log(rowAdded.val());
 
+        // if(){}
         var nameCard = rowAdded.val().tourName;
         var cityCard = rowAdded.val().userCity;
         var pubsCard = rowAdded.val().pubs;
@@ -317,8 +320,9 @@ $(document).ready(function () {
         iDivClosed.attr("class", "material-icons right");
         iDivClosed.attr("style", "font-size:35px;");
         iDivClosed.text("$58/p");
-        cardClosedTitle = nameCard;
 
+        cardClosedTitle = nameCard;
+        cardOpenTitle = 
 
         cardContentClosedSpan.attr("class", "card-title activator grey-text text-darken-4");
         cardContentClosedSpan.append(iDivClosed);
@@ -352,11 +356,13 @@ $(document).ready(function () {
             var address = pubsCard[0].address;
             console.log(address);
 
-
             var revealLocationDiv = $("<div>");
             revealLocationDiv.attr("id", name);
             var revealLocationDivName = $("<h5>");
             var revealLocationDivAddress = $("<p>");
+            revealLocationDiv.text(cardClosedTitle);
+            console.log(cardClosedTitle);
+            revealLocationDiv.text(cityCard).attr("style", "font-size:17px;");
             revealLocationDivName.text(name);
             revealLocationDivAddress.text(address);
             revealLocationDiv.append(revealLocationDivName);
