@@ -55,6 +55,7 @@ $(document).ready(function () {
         $("#crawlersNum").val("");
         $("#pubsNum").val("");
         $("#total").text(numBar);
+        console.log(numBar);
 
         var settings = {
             "async": true,
@@ -189,25 +190,27 @@ $(document).ready(function () {
         pubCounter++;
         updateRemainingPubs();
 
-
-
     });
+
+
+
     $(document).on("click", "#make-reservation", function () {
 
+        event.preventDefault();
+        
         var userBarName = $("#pub-crawl-name").val();
         console.log(userBarName);
 
         //creating div row
-        // var cardRow = $("<div>");
-        // cardRow.attr("class", "row");
-
-
+        var cardRow = $("<div>");
+        cardRow.attr("class", "row");
+        
         //creating div columns
         var cardDivThree = $("<div>");
         cardDivThree.attr("class", "col-lg-3");
         cardDivThree.attr("style", "margin-top: 30px;");
 
-
+        cardRow.append(cardDivThree);
         // cardRow.append(cardDivThree);
         //creating a new card
         var newCardDiv = $("<div>");
@@ -215,6 +218,9 @@ $(document).ready(function () {
         newCardDiv.attr("id", "viewexisting");
 
         cardDivThree.append(newCardDiv);
+
+        // cardDivThree.append(newCardDiv);
+        // cardRow.append(cardDivThree);
 
         //creating the card type
         cardImgDiv = $("<div>");
@@ -227,57 +233,47 @@ $(document).ready(function () {
         cardImg.attr("src", "assets/images/cardPicMiami.png");
         cardImg.attr("alt", "randomImg");
         cardImg.attr("class", "activator");
-
-        //appending image to card
+        // cardImg.attr("style", "position:relative;height:auto;");
         cardImgDiv.append(cardImg);
         newCardDiv.append(cardImgDiv);
 
         //Creating and appending card content in div
-        var cardContentDiv = $("<div>");
-        cardContentDiv.attr("class", "card-conent");
+        var cardContentClosedDiv = $("<div>");
+        cardContentClosedDiv.attr("class", "card-conent fluid");
+
+        //creating the card span and iDiv
+        var cardContentClosedSpan = $("<span>");
+        var iDivClosed = $("<i>");
+        iDivClosed.attr("class", "material-icons right");
+        iDivClosed.attr("style", "font-size:35px;");
+        iDivClosed.text("$58/p");
+        cardClosedTitle = userBarName;
+        cardContentClosedSpan.text(cardClosedTitle);
+
+        //appending
+        cardContentClosedSpan.append(iDivClosed);
+        cardContentClosedDiv.append(cardContentClosedSpan);
+        newCardDiv.append(cardContentClosedDiv);
 
 
-        newCardDiv.append(cardContentDiv);
+        var revealCardDiv = $("<div>");
+        revealCardDiv.attr("class", "card-reveal");
+        var cardRevealSpan = $("<span>");
+        cardRevealSpan.attr("class","card-title grey-text text-darken-4");
+        var revealiDiv = $("<i>");
+        revealiDiv.attr("class","material-icons right");
+        revealiDiv.text("X");
 
-        //Need to add the value of the content after user inputs go to firebase.
+        var revealCardContentDiv = $("<div>");
+        revealCardContentDiv.attr("class", "locations");
+        revealCardContentDiv.append("<h5>Name</h5>", "<p>Address: </p>");
+        //appending
+        cardRevealSpan.append(revealiDiv);
+        revealCardDiv.append(cardRevealSpan);
+        revealCardDiv.append(revealCardContentDiv);
+        newCardDiv.append(revealCardDiv);
 
-        var spanCardTitle = $("<span>");
-        spanCardTitle.attr("class", "card-title activator grey-text text-darken-4");
-        //need to append card title from user input
-        spanCardTitle.append(userBarName);
-        newCardDiv.append(spanCardTitle);
-
-        //creating and appending i Div
-        var iDiv = $("<i>");
-
-        iDiv.attr("class", "material-icons righqt");
-        iDiv.attr("style", "font-size:35px;");
-
-        //adding city name from user input. 
-        var cityName = city;
-        var pCityName = $("#city-name");
-        pCityName.append(cityName);
-        newCardDiv.append(iDiv);
-
-
-        //Adding card reveal
-        var cardReveal = $("<div>");
-        cardReveal.attr("class", "card-reveal");
-        cardReveal.attr("style", "font-size:35px;");
-        var spanRevealCardTitle = $("<span>");
-        spanRevealCardTitle.attr("class", "card-title grey-text text-darken-4");
-        //need to append card title from user input
-        spanRevealCardTitle.append(userBarName);
-        newCardDiv.append(spanCardTitle);
-
-        var iDivReveal = $("<i>");
-        iDivReveal.attr("class", "material-icons righqt");
-        iDivReveal.attr("style", "font-size:35px;");
-        iDivReveal.text("X");
-
-        newCardDiv.append(iDivReveal);
-        
-        $("#existing-crawls").append(newCardDiv);
+        $("#existing-crawls").append(cardDivThree);
 
     });
 
