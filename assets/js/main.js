@@ -3,6 +3,19 @@ console.log("works");
 
 // Or with jQuery
 $(document).ready(function () {
+
+    var config = {
+        apiKey: "AIzaSyDwG5O7eb_GM1WUC6mVVv6GtICFe2lwFPc",
+        authDomain: "pubcrawl-3f813.firebaseapp.com",
+        databaseURL: "https://pubcrawl-3f813.firebaseio.com",
+        projectId: "pubcrawl-3f813",
+        storageBucket: "pubcrawl-3f813.appspot.com",
+        messagingSenderId: "598599678829"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
+
     M.AutoInit();
 
     var pubCounter = 0;
@@ -15,9 +28,7 @@ $(document).ready(function () {
     var venueAddress;
     var numPeople;
     var numBar;
-
-
-
+    var pubArray = [];
 
 
     $('.slider').slider();
@@ -33,24 +44,12 @@ $(document).ready(function () {
         }
     };
 
-
-
-
-
     // Start capture of input
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
         city = $("#crawlersCity option:selected").val();
         console.log(city);
-
-
-
-
-
-
-
-
 
         // locationLong = $("#crawlersCity option:selected").attr("data-longitude");
         numPeople = $("#crawlersNum option:selected").val();
@@ -100,9 +99,6 @@ $(document).ready(function () {
                 venueLat = results[j].location.lat;
                 venueLong = results[j].location.lng;
 
-
-
-
                 // var settings1 = {
                 //     "async": true,
                 //     "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+venueId,
@@ -138,6 +134,7 @@ $(document).ready(function () {
                 // spanVar.attr("data-barrating", venueResults.rating);
                 spanVar.attr("data-barlat", venueLat);
                 spanVar.attr("data-barlong", venueLong);
+                spanVar.attr("data-barid", venueId);
 
                 var iTagVar = $("<i>");
                 iTagVar.addClass("material-icons");
@@ -166,184 +163,222 @@ $(document).ready(function () {
 
 
         });
+    });
 
 
+
+    //creates the modal with the selected pub information
+    $(document).on("click", ".add-btn", function () {
+
+        $(this).addClass("disabled");
+
+        // var ratingToShow;
+        // var idToAjax = $(this).attr("data-barid");
+
+
+        var pubCardVar = $("<div>");
+        pubCardVar.addClass("col-6");
+        pubCardVar.attr("id", "pub-card");
+        pubCardVar.attr("style", "height:auto;");
+
+
+        var cardVar = $("<div>");
+        cardVar.addClass("card #d81b60 pink darken-1");
+
+        var cardContentVar = $("<div>");
+        cardContentVar.addClass("card-content white-text");
+        cardContentVar.addClass("card-content white-text #d81b60 pink darken-1");
+        cardContentVar.attr("style", "height:auto;");
+
+
+        var cardTitleVar = $("<span>");
+        cardTitleVar.addClass("card-title");
+        cardTitleVar.attr("id", "bar-name");
+        cardTitleVar.text($(this).attr("data-barname"));
+
+        var pAddressVar = $("<p>");
+        pAddressVar.text("Address: " + $(this).attr("data-baraddress"));
+
+        // var pRatingVar = $("<p>");
+        // pRatingVar.text("Rating: "+ratingToShow);
+
+        cardContentVar.append(cardTitleVar);
+        cardContentVar.append(pAddressVar);
+        // cardContentVar.append(pRatingVar);
+
+        cardVar.append(cardContentVar);
+
+        pubCardVar.append(cardVar);
+
+        $("#pubs-container").append(pubCardVar);
+        pubCounter++;
+        updateRemainingPubs();
+
+        var nameToObj = $(this).attr("data-barname");
+        var addressToObj = $(this).attr("data-baraddress");
+        var latToObj = $(this).attr("data-barlat");
+        var longToObj = $(this).attr("data-barlong");
+        var idToObj = $(this).attr("data-barid");
+        // var ratingToObj = ratingToShow;
+
+        var newPubObj = {
+            name: nameToObj,
+            address: addressToObj,
+            latitude: latToObj,
+            longitude: longToObj,
+            id: idToObj,
+            // rating: ratingToObj
+        };
+
+        pubArray.push(newPubObj);
+
+        console.log("Pub Array:  ", pubArray);
 
     });
 
-    $(document).on("click", "#submit-make-crawl", function () {
-        console.log("works");
-        // var thisLon = 
-        // var thisLat = 
-
-    //     var queryURL = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBMD3ojp-P28ggup4xeFUZI9i6rYDJwRNU";
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET",
-    //     }).then(function (response) {
 
 
-    //         function initialize() {
-    //             map = new google.maps.Map(document.getElementById('map'), {
-    //                 center: { lat: -34.397, lng: 150.644 },
-    //                 zoom: 8
-    //             });
-    //             ready = function () {
-    //                 var script = document.createElement('script');
-    //                 script.type = 'text/javascript';
-    //                 script.src = queryURL + 'libraries=places&' + 'callback=initialize';
-    //                 document.body.appendChild(script);
-    //             };
+    $(document).on("click", "#make-reservation", function () {
 
-    // };
-});
+        var userBarName = $("#pub-crawl-name").val();
+        console.log(userBarName);
+
+        var newTourObj = {
+            tourName: userBarName,
+            userCity: city,
+            pubs: pubArray
+        };
+
+        database.ref().push(newTourObj);
+
+    });
 
 
 
+    database.ref().on("child_added", function (rowAdded) {
+        console.log(rowAdded.val());
+
+        var nameCard = rowAdded.val().tourName;
+        var cityCard = rowAdded.val().userCity;
+        var pubsCard = rowAdded.val().pubs;
+        console.log(pubsCard);
+
+        $(".collection").empty();
+        pubCounter = 0;
+
+        event.preventDefault();
+
+        //creating div row
+        var cardRow = $("<div>");
+        cardRow.attr("class", "row");
+
+        //creating div columns
+        var cardDivThree = $("<div>");
+        cardDivThree.attr("class", "col-lg-3");
+        cardDivThree.attr("style", "margin-top: 25px;");
+
+        cardRow.append(cardDivThree);
+        // cardRow.append(cardDivThree);
+        //creating a new card
+        var newCardDiv = $("<div>");
+        newCardDiv.attr("class", "card");
+
+        cardDivThree.append(newCardDiv);
+
+        // cardDivThree.append(newCardDiv);
+        // cardRow.append(cardDivThree);
+
+        //creating the card type
+        cardImgDiv = $("<div>");
+        cardImgDiv.attr("class", "card-image waves-effect waves-block waves-light");
+
+        //creating and appending card image
+        var pictureNum = Math.floor(Math.random() * 5) + 1;
+        console.log(pictureNum);
+        console.log(cityCard);
+
+        cardImg = $("<img>");
+        cardImg.attr("src", "assets/images/" + cityCard + ".gif");
+        cardImg.attr("alt", "randomImg");
+        cardImg.attr("class", "activator");
+        // cardImg.attr("style", "position:relative;height:auto;");
+        cardImgDiv.append(cardImg);
+        newCardDiv.append(cardImgDiv);
+
+        //Creating and appending card content in div
+        var cardContentClosedDiv = $("<div>");
+        cardContentClosedDiv.attr("class", "card-conent");
+        cardContentClosedDiv.attr("style", "padding:24px;");
 
 
-//creates the modal with the selected pub information
-$(document).on("click", ".add-btn", function () {
-    console.log(city);
-    $(this).addClass("disabled");
-
-    var pubCardDiv = $("<div>");
-    pubCardDiv.addClass("col-6");
-    pubCardDiv.attr("id", "pub-card-div");
-    pubCardDiv.attr("style", "height:auto;");
-
-    var pubCard = $("<div>");
-    pubCard.addClass("card blue-grey darken-1");
-
-    var cardContent = $("<div>");
-    cardContent.addClass("card-content white-text #d81b60 pink darken-1");
-    cardContent.attr("style", "height:auto;");
+        //creating the card span and iDiv
+        var cardContentClosedSpan = $("<span>");
+        var iDivClosed = $("<i>");
+        iDivClosed.attr("class", "material-icons right");
+        iDivClosed.attr("style", "font-size:35px;");
+        iDivClosed.text("$58/p");
+        cardClosedTitle = nameCard;
 
 
-    var cardTitle = $("<span>");
-    cardTitle.addClass("card-title");
-    cardTitle.attr("id", "bar-name");
+        cardContentClosedSpan.attr("class", "card-title activator grey-text text-darken-4");
+        cardContentClosedSpan.append(iDivClosed);
+        cardContentClosedSpan.append(cardClosedTitle);
+        cardContentClosedDiv.append(cardContentClosedSpan);
 
-    cardTitle.text($(this).attr("data-barname"));
+        newCardDiv.append(cardContentClosedDiv);
+        //appending
+        // cardContentClosedSpan.text("My Title");
+        var cardClosedPDiv = $("<p>");
+        cardClosedPDiv.attr("id", cityCard);
+        cardClosedPDiv.attr("style", "font-size:18px;");
+        cardClosedPDiv.text(cityCard);
+        cardContentClosedDiv.append(cardClosedPDiv);
 
-    var pubAddress = $("<p>");
-    pubAddress.text("Address: " + $(this).attr("data-baraddress"));
+        //reveal Card Divs 
+        var revealCardDiv = $("<div>");
+        revealCardDiv.attr("class", "card-reveal");
+        var cardRevealSpan = $("<span>");
+        cardRevealSpan.attr("class", "card-title grey-text text-darken-4");
+        var revealiDiv = $("<i>");
+        revealiDiv.attr("class", "material-icons right");
+        revealiDiv.text("X");
 
+        var revealCardContentDiv = $("<div>");
+        revealCardContentDiv.attr("class", "locations");
 
-    cardContent.append(cardTitle);
-    cardContent.append(pubAddress);
-
-    pubCard.append(cardContent);
-
-    pubCardDiv.append(pubCard);
-
-    $("#pubs-container").append(pubCardDiv);
-    pubCounter++;
-    updateRemainingPubs();
-
-});
-
-
-
-$(document).on("click", "#make-reservation", function () {
-    $(".collection").empty();
-    pubCounter = 0;
-
-    event.preventDefault();
-
-    var userBarName = $("#pub-crawl-name").val();
-    console.log(userBarName);
-
-    //creating div row
-    var cardRow = $("<div>");
-    cardRow.attr("class", "row");
-
-    //creating div columns
-    var cardDivThree = $("<div>");
-    cardDivThree.attr("class", "col-lg-3");
-    cardDivThree.attr("style", "margin-top: 25px;");
-
-    cardRow.append(cardDivThree);
-    // cardRow.append(cardDivThree);
-    //creating a new card
-    var newCardDiv = $("<div>");
-    newCardDiv.attr("class", "card");
-
-    cardDivThree.append(newCardDiv);
-
-    // cardDivThree.append(newCardDiv);
-    // cardRow.append(cardDivThree);
-
-    //creating the card type
-    cardImgDiv = $("<div>");
-    cardImgDiv.attr("class", "card-image waves-effect waves-block waves-light");
-
-    //creating and appending card image
-    var pictureNum = Math.floor(Math.random() * 5) + 1;
-    console.log(pictureNum);
-    cardImg = $("<img>");
-    cardImg.attr("src", "assets/images/" + city + ".gif");
-    cardImg.attr("alt", "randomImg");
-    cardImg.attr("class", "activator");
-    // cardImg.attr("style", "position:relative;height:auto;");
-    cardImgDiv.append(cardImg);
-    newCardDiv.append(cardImgDiv);
-
-    //Creating and appending card content in div
-    var cardContentClosedDiv = $("<div>");
-    cardContentClosedDiv.attr("class", "card-conent");
-    cardContentClosedDiv.attr("style", "padding:24px;");
+        // for(i=0; i<pubArray.length; i++){
+            var name = pubsCard[0].name;
+            console.log(name);
+            var address = pubsCard[0].address;
+            console.log(address);
 
 
-    //creating the card span and iDiv
-    var cardContentClosedSpan = $("<span>");
-    var iDivClosed = $("<i>");
-    iDivClosed.attr("class", "material-icons right");
-    iDivClosed.attr("style", "font-size:35px;");
-    iDivClosed.text("$58/p");
-    cardClosedTitle = userBarName;
+            var revealLocationDiv = $("<div>");
+            revealLocationDiv.attr("id", name);
+            var revealLocationDivName = $("<h5>");
+            var revealLocationDivAddress = $("<p>");
+            revealLocationDivName.text(name);
+            revealLocationDivAddress.text(address);
+            revealLocationDiv.append(revealLocationDivName);
+            revealLocationDiv.append(revealLocationDivAddress);
+        // }
+        
+        revealCardContentDiv.append(revealLocationDiv);
 
 
-    cardContentClosedSpan.attr("class", "card-title activator grey-text text-darken-4");
-    cardContentClosedSpan.append(iDivClosed);
-    cardContentClosedSpan.append(cardClosedTitle);
-    cardContentClosedDiv.append(cardContentClosedSpan);
+        //appending
+        cardRevealSpan.append(revealiDiv);
+        revealCardDiv.append(cardRevealSpan);
+        revealCardDiv.append(revealCardContentDiv);
+        newCardDiv.append(revealCardDiv);
 
-    newCardDiv.append(cardContentClosedDiv);
-    //appending
-    // cardContentClosedSpan.text("My Title");
-    var cardClosedPDiv = $("<p>");
-    cardClosedPDiv.attr("id", city);
-    cardClosedPDiv.attr("style", "font-size:18px;");
-    cardClosedPDiv.text(city);
-    cardContentClosedDiv.append(cardClosedPDiv);
+        $("#existing-crawls").append(cardDivThree);
 
-    //reveal Card Divs 
-    var revealCardDiv = $("<div>");
-    revealCardDiv.attr("class", "card-reveal");
-    var cardRevealSpan = $("<span>");
-    cardRevealSpan.attr("class", "card-title grey-text text-darken-4");
-    var revealiDiv = $("<i>");
-    revealiDiv.attr("class", "material-icons right");
-    revealiDiv.text("X");
+        alert("You Made a new Reservation: " + nameCard);
 
-    var revealCardContentDiv = $("<div>");
-    revealCardContentDiv.attr("class", "locations");
-    revealCardContentDiv.append("<h5>Name</h5>", "<p>Address: </p>");
-    //appending
-    cardRevealSpan.append(revealiDiv);
-    revealCardDiv.append(cardRevealSpan);
-    revealCardDiv.append(revealCardContentDiv);
-    newCardDiv.append(revealCardDiv);
-
-    $("#existing-crawls").append(cardDivThree);
-
-    alert("You Made a new Reservation: " + userBarName);
+    });
 
 });
-
-        });
-    // });
 
 
 
