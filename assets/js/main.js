@@ -16,6 +16,7 @@ $(document).ready(function () {
     var numPeople;
     var numBar;
 
+
     $('.slider').slider();
     $('.dropdown-trigger').dropdown();
     $('.parallax').parallax();
@@ -25,7 +26,7 @@ $(document).ready(function () {
         $("#remaining").text(pubRemaining);
         if (pubRemaining == 0) {
             $(".add-btn").addClass("disabled");
-            $("#submit").addClass("disabled");
+            // $("#submit").addClass("disabled");
         }
     };
 
@@ -33,9 +34,9 @@ $(document).ready(function () {
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
-
-
         city = $("#crawlersCity option:selected").val();
+        console.log(city);
+
         // locationLong = $("#crawlersCity option:selected").attr("data-longitude");
         numPeople = $("#crawlersNum option:selected").val();
         numBar = $("#pubsNum option:selected").val();
@@ -65,7 +66,7 @@ $(document).ready(function () {
                 "cache-control": "no-cache",
                 "Postman-Token": "bcf5dd2b-3c65-449d-83ba-701d5d2ce430"
             }
-        }
+        };
 
         $.ajax(settings).done(function (response) {
             console.log(response);
@@ -147,13 +148,15 @@ $(document).ready(function () {
             modalButVar.text("Show Tour");
             $("#pub-options").append(modalButVar);
 
-        })
+
+
+        });
     });
 
 
     //creates the modal with the selected pub information
     $(document).on("click", ".add-btn", function () {
-
+        console.log(city);
         $(this).addClass("disabled");
 
         var pubCardDiv = $("<div>");
@@ -195,6 +198,8 @@ $(document).ready(function () {
 
 
     $(document).on("click", "#make-reservation", function () {
+        $(".collection").empty();
+        pubCounter=0;
 
         event.preventDefault();
         
@@ -204,18 +209,17 @@ $(document).ready(function () {
         //creating div row
         var cardRow = $("<div>");
         cardRow.attr("class", "row");
-        
+
         //creating div columns
         var cardDivThree = $("<div>");
         cardDivThree.attr("class", "col-lg-3");
-        cardDivThree.attr("style", "margin-top: 30px;");
+        cardDivThree.attr("style", "margin-top: 25px;");
 
         cardRow.append(cardDivThree);
         // cardRow.append(cardDivThree);
         //creating a new card
         var newCardDiv = $("<div>");
         newCardDiv.attr("class", "card");
-        newCardDiv.attr("id", "viewexisting");
 
         cardDivThree.append(newCardDiv);
 
@@ -230,7 +234,7 @@ $(document).ready(function () {
         var pictureNum = Math.floor(Math.random() * 5) + 1;
         console.log(pictureNum);
         cardImg = $("<img>");
-        cardImg.attr("src", "assets/images/cardPicMiami.png");
+        cardImg.attr("src", "assets/images/" + city + ".gif");
         cardImg.attr("alt", "randomImg");
         cardImg.attr("class", "activator");
         // cardImg.attr("style", "position:relative;height:auto;");
@@ -239,7 +243,9 @@ $(document).ready(function () {
 
         //Creating and appending card content in div
         var cardContentClosedDiv = $("<div>");
-        cardContentClosedDiv.attr("class", "card-conent fluid");
+        cardContentClosedDiv.attr("class", "card-conent");
+        cardContentClosedDiv.attr("style", "padding:24px;");
+        
 
         //creating the card span and iDiv
         var cardContentClosedSpan = $("<span>");
@@ -248,14 +254,23 @@ $(document).ready(function () {
         iDivClosed.attr("style", "font-size:35px;");
         iDivClosed.text("$58/p");
         cardClosedTitle = userBarName;
-        cardContentClosedSpan.text(cardClosedTitle);
+ 
 
-        //appending
+        cardContentClosedSpan.attr("class","card-title activator grey-text text-darken-4");
         cardContentClosedSpan.append(iDivClosed);
+        cardContentClosedSpan.append(cardClosedTitle);
         cardContentClosedDiv.append(cardContentClosedSpan);
+
         newCardDiv.append(cardContentClosedDiv);
+        //appending
+        // cardContentClosedSpan.text("My Title");
+        var cardClosedPDiv = $("<p>");
+        cardClosedPDiv.attr("id", city);
+        cardClosedPDiv.attr("style", "font-size:18px;");
+        cardClosedPDiv.text(city);
+        cardContentClosedDiv.append(cardClosedPDiv);
 
-
+        //reveal Card Divs 
         var revealCardDiv = $("<div>");
         revealCardDiv.attr("class", "card-reveal");
         var cardRevealSpan = $("<span>");
@@ -274,6 +289,8 @@ $(document).ready(function () {
         newCardDiv.append(revealCardDiv);
 
         $("#existing-crawls").append(cardDivThree);
+
+        alert("You Made a new Reservation: " + userBarName);
 
     });
 

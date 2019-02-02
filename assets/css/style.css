@@ -102,3 +102,7 @@ h2 {
 #show-tour{
     background-color: rgb(255, 0, 89);
 }
+
+.card-content {
+    padding: 24px;
+}
