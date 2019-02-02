@@ -93,16 +93,15 @@ h2 {
     height: 50%;
     margin: 100px;
     padding:20px;
-    position: relative;
-    top: 770px;
+    position: absolute;
+    top: 670px;
     left:-30px;
-   
 }
 
 #show-tour{
     background-color: rgb(255, 0, 89);
 }
-
+/* 
 .card-content {
-    padding: 24px;
-}
+    
+} */
