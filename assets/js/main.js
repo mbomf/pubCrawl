@@ -136,7 +136,7 @@ $(document).ready(function () {
                 // anchorVar.text(results[j].name);
                 anchorVar.text(venueName);
 
-                console.log("venue name", venueName)
+                console.log("venue name", venueName);
 
                 // var spanVar = $("<span>");
                 var spanVar = $("<span>");
@@ -163,6 +163,7 @@ $(document).ready(function () {
             }
             $("#price-per-person").append(pubPerPerson);
             $("#total-price").append(pubTotalCost);
+
     
             updateRemainingPubs();
 
@@ -174,8 +175,6 @@ $(document).ready(function () {
             modalButVar.attr("id", "#show-tour");
             modalButVar.text("Show Tour");
             $("#pub-options").append(modalButVar);
-
-
 
         });
     });
@@ -285,6 +284,11 @@ $(document).ready(function () {
         console.log(pubsCard);
 
         $(".collection").empty();
+        $("#price-per-person").empty();
+        $("#total-price").empty();
+        $("#price-per-person").text("Price Per Person: ");
+        $("#total-price").text("Total Price: ");
+
         pubCounter = 0;
 
         event.preventDefault();

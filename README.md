@@ -4,7 +4,7 @@
 Trilogy - Full Stack Development Program Universtiy of Miami Cohort 2018
 ## Team Members
 Marlon Villegas (@)
-Fabian Diez (@)
+Fabian Diaz (@)
 Marco Brugo (@mbomf)
 
 ## Pub Crawl
@@ -34,7 +34,7 @@ Materialize.io, google maps api
 Google Maps (City Start point and appended locations), Firebase (store user selection)
 
 #Copyright:
-Fabian Diez (@fdiez79),
+Fabian Diaz (@fdiaz79),
 Marco Brugo (@mbomf),
 Marlon Villegas (@)
 
