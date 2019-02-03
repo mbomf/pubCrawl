@@ -12,9 +12,9 @@ $(document).ready(function () {
         storageBucket: "pubcrawl-3f813.appspot.com",
         messagingSenderId: "598599678829"
     };
+
     firebase.initializeApp(config);
     var database = firebase.database();
-
 
     M.AutoInit();
 
@@ -29,6 +29,8 @@ $(document).ready(function () {
     var numPeople;
     var numBar;
     var pubArray = [];
+    var pubPerPerson = 0;
+    var pubTotalCost =0;
 
     $('.slider').slider();
     $('.dropdown-trigger').dropdown();
@@ -50,11 +52,19 @@ $(document).ready(function () {
         city = $("#crawlersCity option:selected").val();
         console.log(city);
 
-        var totalCost = $("#price option:selected").val("price");
-        console.log(totalCost);
+
+
+        
         // locationLong = $("#crawlersCity option:selected").attr("data-longitude");
         numPeople = $("#crawlersNum option:selected").val();
         numBar = $("#pubsNumSelect option:selected").val();
+
+        pubPerPerson = $("#pubsNumSelect option:selected").attr("price");
+        console.log(pubPerPerson);
+
+        pubTotalCost = pubPerPerson*numPeople;
+        console.log(pubTotalCost);
+
 
         console.log(city + "|" + numPeople + "|" + numBar);
         // var newItinObj = {
@@ -151,6 +161,9 @@ $(document).ready(function () {
                 // });
 
             }
+            $("#price-per-person").append(pubPerPerson);
+            $("#total-price").append(pubTotalCost);
+    
             updateRemainingPubs();
 
             //modal button trigger
@@ -173,6 +186,7 @@ $(document).ready(function () {
     $(document).on("click", ".add-btn", function () {
 
         $(this).addClass("disabled");
+        
 
         // var ratingToShow;
         // var idToAjax = $(this).attr("data-barid");
@@ -221,6 +235,8 @@ $(document).ready(function () {
         var latToObj = $(this).attr("data-barlat");
         var longToObj = $(this).attr("data-barlong");
         var idToObj = $(this).attr("data-barid");
+        
+
         // var ratingToObj = ratingToShow;
 
         var newPubObj = {
@@ -248,7 +264,8 @@ $(document).ready(function () {
         var newTourObj = {
             tourName: userBarName,
             userCity: city,
-            pubs: pubArray
+            pubs: pubArray,
+            pricePP: pubPerPerson
         };
 
         database.ref().push(newTourObj);
@@ -264,6 +281,7 @@ $(document).ready(function () {
         var nameCard = rowAdded.val().tourName;
         var cityCard = rowAdded.val().userCity;
         var pubsCard = rowAdded.val().pubs;
+        var pricePerPerson =  rowAdded.val().pricePP;
         console.log(pubsCard);
 
         $(".collection").empty();
@@ -284,7 +302,7 @@ $(document).ready(function () {
         // cardRow.append(cardDivThree);
         //creating a new card
         var newCardDiv = $("<div>");
-        newCardDiv.attr("class", "card");
+        newCardDiv.attr("class", "card z-depth-3");
 
         cardDivThree.append(newCardDiv);
 
@@ -317,7 +335,8 @@ $(document).ready(function () {
         var iDivClosed = $("<i>");
         iDivClosed.attr("class", "material-icons right");
         iDivClosed.attr("style", "font-size:35px;");
-        iDivClosed.text("$58/p");
+        iDivClosed.text("$" + pricePerPerson +"/p");
+        console.log(pricePerPerson);
 
         cardClosedTitle = nameCard;
         cardOpenTitle = 
@@ -349,7 +368,7 @@ $(document).ready(function () {
         revealCardContentDiv.attr("class", "locations");
 
         var revealLocationDiv = $("<div>");
-        var cardOpenTitle = $("<p>")
+        var cardOpenTitle = $("<p>");
 
         cardOpenTitle.text(cardClosedTitle  + " - " + cityCard);
         revealLocationDiv.append(cardOpenTitle);
@@ -384,7 +403,7 @@ $(document).ready(function () {
 
         $("#existing-crawls").append(cardDivThree);
 
-        alert("You Made a new Reservation: " + nameCard);
+        // alert("You Made a new Reservation: " + nameCard);
 
     });
 

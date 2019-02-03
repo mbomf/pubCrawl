@@ -103,6 +103,15 @@ span{
     font-size: 25px;
 }
 
+#cityform-Title {
+    color: rgb(255, 0, 89);
+}
+
+#cityform-subTitle {
+    color: teal;
+
+}
+
 #map{
     height: 50%;
     margin: 100px;
@@ -112,9 +121,20 @@ span{
     left:-30px;
 }
 
+#costs {
+    float: left;
+    text-align: left;
+    font-size: 10px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
 #show-tour{
     background-color: rgb(255, 0, 89);
 }
+
+
 /* 
 .card-content {
     

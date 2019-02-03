@@ -70,11 +70,11 @@
     </div>
 
     <div class="row">
-        <div class="col s5 m5">
+        <div class="col s5 m5" style="background:transparent">
             <br>
-            <div class="how-to-crawl" class="parallax-container">
+            <div class="how-to-crawl" class="parallax-container ">
                 <strong>
-                    <h3>How To Crawl</h3>
+                    <h3 style="color:rgb(255, 0, 89);">How To Crawl</h3>
                 </strong>
                 <br>
                 <div id="location">
@@ -111,9 +111,9 @@
         </div>
         <div class="col l5 m5" id="createCrawl">
             <br>
-            <div id="City Form">
-                <h2>Time to Get Shwasted.</h2>
-                <h4>Pick your PubCrawl Starting Point!</h4>
+            <div id="City-Form" >
+                <h2 style="color:rgb(255, 0, 89);">Time to Get Shwasted.</h2>
+                <h4 style="color:teal;">Pick your PubCrawl Starting Point!</h4>
                 <br>
                 <form id="calculate-route" name="calculate-route" action="#" method="get">
                     <label for="from" style="font-size:25px;">Where Are You Crawling From</label>
@@ -126,6 +126,20 @@
                         <option id="city" data-latitude="38.91330" data-longitude="1.43262" value="Ibiza">Ibiza</option>
                         <option id="city" data-latitude="36.16607" data-longitude="-115.16467" value="Vegas">Vegas</option>
                         <option id="city" data-latitude="40.41466" data-longitude="-3.69724" value="Madrid">Madrid</option>
+                        <option id="city" data-latitude="18.78560" data-longitude="72.89830" value="Beijing">Beijing</option>
+                        <option id="city" data-latitude="59.96461" data-longitude="10.63034" value="Oslo">Oslo</option>
+                        <option id="city" data-latitude="48.90622" data-longitude="2.19284" value="Paris">Paris</option>
+                        <option id="city" data-latitude="59.29812" data-longitude="17.92526" value="StockHolm">StockHolm</option>
+                        <option id="city" data-latitude="48.26670" data-longitude="11.42135" value="Munich">Munich</option>
+                        <option id="city" data-latitude="41.06670" data-longitude="29.06640" value="Istanbul">Istanbul</option>
+                        <option id="city" data-latitude="-34.60427" data-longitude="-58.53585" value="Buenos Aires">Buenos Aires</option>
+                        <option id="city" data-latitude="6.27862" data-longitude="-75.67452" value="Medellin">Medellin</option>
+                        <option id="city" data-latitude="-22.70890" data-longitude="-43.41866" value="Rio">Rio</option>
+                        <option id="city" data-latitude="-33.85306" data-longitude="18.44027" value="Cape Town">Cape Town</option>
+                        <option id="city" data-latitude="-37.71950" data-longitude="144.83959" value="Melbourne">Melbourne</option>
+                        <option id="city" data-latitude="-33.65217" data-longitude="151.34350" value="Sydney">Sydney</option>
+                        <option id="city" data-latitude="51.47740" data-longitude="-0.13278" value="London">London</option>
+                        <option id="city" data-latitude="19.18103" data-longitude="109.88407" value="Hong Kong">Hong Kong</option>
                     </select>
                     <div></div> 
                     <br>
@@ -174,13 +188,19 @@
     <div id="selected-pubs" class="modal modal-fixed-footer">
         <div class="modal-content">
             <input type="text" class="required" id="pub-crawl-name" alt="pub crawl name" style="font-size:35px;">Name Your Bar Crawl! </input>
+            <br><br>
+            <div id="costs"> 
+                    <div id="price-per-person" style="font-size:20px;"><p>Price Per Person: </p></div>
+                    <div id="total-price" style="font-size:20px;"><p>Total Price: </p></div>
 
+                </div>
             <div class="row" id="pubs-container">
-
+                
             </div>
         </div>
         <div class="modal-footer">
-            <a href="#!" style="margin-right:15px;" id="make-reservation" class="modal-close waves-effect waves-green btn-flat #d81b60 pink darken-1 white-text">Make
+           
+            <a href="#viewexisting" style="margin-right:15px;" id="make-reservation" class="modal-close waves-effect waves-green btn-flat #d81b60 pink darken-1 white-text">Make
                 Reservation</a>
             <a href="#!" class="modal-close waves-effect waves-green #d81b60 pink darken-1 white-text btn-flat ">Cancel</a>
         </div>
@@ -234,7 +254,7 @@
     <div class="row" id="existing-crawls" style="padding-bottom:30px;">
        <br><br>
         <div class="col-lg-3">
-            <div class="card">
+            <div class="card z-depth-3">
                 <div class="card-image waves-effect waves-block waves-light">
                     <img class="activator" src="assets/images/cardPicMiami.png" alt="Miami">
                 </div>
