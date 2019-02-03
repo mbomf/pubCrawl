@@ -28,6 +28,13 @@ $(document).ready(function () {
     var numPeople;
     var numBar;
     var pubArray = [];
+    var locationLong = -80.19095;
+    var locationLat = 25.78548;
+    var latitudesArr = [];
+    var longitudesArr = [];
+    var barMapLat = 25.78548;
+    var barMapLong = -80.19095;
+    
 
     $('.slider').slider();
     $('.dropdown-trigger').dropdown();
@@ -51,9 +58,12 @@ $(document).ready(function () {
 
 
         city = $("#crawlersCity option:selected").val();
-        // locationLong = $("#crawlersCity option:selected").attr("data-longitude");
+        locationLong = parseFloat($("#crawlersCity option:selected").attr("data-longitude"));
+        locationLat = parseFloat($("#crawlersCity option:selected").attr("data-latitude"));
         numPeople = $("#crawlersNum option:selected").val();
         numBar = $("#pubsNum option:selected").val();
+
+        console.log("latitude & longitude: ", locationLat, locationLong);
         
         console.log(city +"|"+ numPeople+"|"+numBar);
 
@@ -64,7 +74,7 @@ $(document).ready(function () {
 
         var settings = {
             "async": true,
-            "url": "https://ancient-ocean-97660.herokuapp.com/categoeryId?city="+city+"&client_id=HT0AF0YCBHXL00VK1ZSEAXQVPEC3Y2UTA5RIB4UMALZZUERC&client_secret=2BBILRGSDF0ZYSAK4KH50VZSFO4FCR0MZLXPWDSZRNKQ0UST&v=20190110&radius=5&categoryId=4bf58dd8d48988d11d941735&limit=10",
+            "url": "https://ancient-ocean-97660.herokuapp.com/categoeryId?city="+city+"&client_id=HT0AF0YCBHXL00VK1ZSEAXQVPEC3Y2UTA5RIB4UMALZZUERC&client_secret=2BBILRGSDF0ZYSAK4KH50VZSFO4FCR0MZLXPWDSZRNKQ0UST&v=20190110&radius=2000&categoryId=4bf58dd8d48988d11d941735&limit=10",
             "method": "GET",
             "headers": {
                 "cache-control": "no-cache",
@@ -92,11 +102,7 @@ $(document).ready(function () {
                 var anchorVar = $("<a>");
                 anchorVar.addClass("collection-item");
                 anchorVar.text(venueName);
-                // anchorVar.attr("data-position", "top");
-                // anchorVar.attr("data-tooltip", "ratingToShow");
-                // anchorVar.attr("data-barid", venueId);
-
-
+                
                 var spanVar = $("<span>");
                 spanVar.addClass("badge btn-flat waves-effect waves-light red add-btn");
                 spanVar.attr("data-barname", venueName);
@@ -116,6 +122,7 @@ $(document).ready(function () {
                     
             }
             updateRemainingPubs();
+            initMap();
 
             //modal button trigger
             var modalButVar = $("<a>");
@@ -136,7 +143,12 @@ $(document).ready(function () {
 
         // var ratingToShow;
         // var idToAjax = $(this).attr("data-barid");
+        // barMapLat = parseFloat($(this).attr("data-barlat"));
+        // barMapLong = parseFloat($(this).attr("data-barlong"));
+        latitudesArr.push(parseFloat($(this).attr("data-barlat")));
+        longitudesArr.push(parseFloat($(this).attr("data-barlong")));
 
+        console.log ("lat-long Arrays:", latitudesArr, longitudesArr);
 
         var pubCardVar = $("<div>");
         pubCardVar.addClass("col s6");
@@ -170,6 +182,7 @@ $(document).ready(function () {
         $("#pubs-container").append(pubCardVar);
         pubCounter++;
         updateRemainingPubs();
+        initMap();
 
         var nameToObj = $(this).attr("data-barname");
         var addressToObj = $(this).attr("data-baraddress");
@@ -191,89 +204,8 @@ $(document).ready(function () {
 
         console.log("array",pubArray);
 
-
-        // var settings1 = {
-        //     "async": true,
-        //     "url": "https://ancient-ocean-97660.herokuapp.com/venue?venueId="+idToAjax,
-        //     "method": "GET",
-        //     "headers": {
-        //         "Content-Type": "application/json",
-        //         "cache-control": "no-cache",
-        //         "Postman-Token": "4953f006-dbbb-4411-8bf1-9a7f7781dd4d"
-        //     },
-        //     "processData": false,
-        //     "data": ""
-        // }
-                    
-        // $.ajax(settings1).done(function (venue) {
-        //     // console.log("VenueResponse: "+venue);
-        
-        //     var venueResults = venue.response.venue;
-            
-        //     ratingToShow = venueResults.rating;
-        //     console.log("rating:", ratingToShow);
-        //     // var pRatingVar = $("<p>");
-        //     // pRatingVar.text("Rating: "+ratingToShow);
-
-        //     // cardContentVar.append(cardTitleVar);
-        //     // cardContentVar.append(pAddressVar);
-        //     // cardContentVar.append(pRatingVar);
-            
-        //     // cardVar.append(cardContentVar);
-
-        //     // pubCardVar.append(cardVar);
-
-        //     // $("#pubs-container").append(pubCardVar);
-        //     // pubCounter++;
-        //     // updateRemainingPubs();
-
-        //     // var nameToObj = $(this).attr("data-barname");
-        //     // var addressToObj = $(this).attr("data-baraddress");
-        //     // var latToObj = $(this).attr("data-barlat");
-        //     // var longToObj = $(this).attr("data-barlong");
-        //     // var idToObj = $(this).attr("data-barid");
-        //     // var ratingToObj = ratingToShow;
-
-        //     // var newPubObj = {
-        //     //     name : nameToObj,
-        //     //     address : addressToObj,
-        //     //     latitude : latToObj,
-        //     //     longitude : longToObj,
-        //     //     id: idToObj,
-        //     //     rating: ratingToObj
-        //     // };
-
-        //     // pubArray.push(newPubObj);
-
-        //     // console.log("array",pubArray);
-
-        // });
-
     });
-    // var mapProp= {
-    //     center:new google.maps.LatLng(51.508742,-0.120850),
-    //     zoom:5,
-    //   };
-    //   var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-    //   }
-    //   });
-    // var querylink= "https://maps.googleapis.com/maps/api/js?key=AIzaSyBMD3ojp-P28ggup4xeFUZI9i6rYDJwRNU";
-    // console.log(querylink);
-    // $.ajax()({
-    //     url=querylink
-    //     method="GET"
-    //    });
-    // function myMap() {
-    //     var mapProp= {
-    //       center:new google.maps.LatLng(51.508742,-0.120850),
-    //       zoom:5,
-    //     };
-    //     var map = new google.maps.Map(document.getElementById("map"),mapProp);
-    //     }
-    
-
       
-
 
     // send data to firebase
     $(document).on("click", "#make-reservation", function() {
@@ -287,38 +219,84 @@ $(document).ready(function () {
         database.ref().push(newTourObj);        
     });
 
-    
-    // }); 
-
-    
-    //show cards on loading and on adding child
-    // database.ref().on("child_added", function(rowAdded) {
-    //     console.log(rowAdded.val());
-
-    //     var nameCard = rowAdded.val().tourName;
-    //     var cityCard = rowAdded.val().city;
-    //     var pubsCard = rowAdded.val().pubArray;
-    //     var imageCard = assets/images/cardPicManhattan.png;
-
-    //     var toAppendDiv = $("<div>");
-    //     toAppendDiv.addClass("col-lg-3");
-
-    //     var newTourToAdd = $("<div>");
-    //     newTourToAdd.addClass("card");
-    //     newTourToAdd.attr("id", "viewexisting");
-
-    //     var imgDiv = $("<div>");
-    //     imgDiv.addClass("card-image waves-effect waves-block waves-light");
-
-    //     var imgTour = $("<img>");
-    //     imgTour.addClass("activator");
-    //     imgTour.attr("source", imageCard);
-
-    //     var titleDiv = $("<div>");
 
 
-    //     $("#cards-display").append($(toAppendDiv));
-    // });
+
+    // var maplat = 25.761681;
+    // var mapLong = -80.19095;
+
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map-display'), {
+            center: { lat: locationLat, lng: locationLong },
+            zoom: 13
+        });
+
+       
+        for (l = 0; l < latitudesArr.length; l++){
+
+            var latToMap = latitudesArr[l];
+            var longToMap = longitudesArr[l];
+            var barMap = {lat: latToMap, lng: longToMap};
+            var marker = new google.maps.Marker({position: barMap, map: map});
+        }
+ 
+        // var barMap = { lat: barMapLat, lng: barMapLong}
+        // var barMap2 = { lat: 25.76476826848173, lng: -80.19347681701898}
+        // var marker = new google.maps.Marker({position: barMap, map: map});
+        // var marker = new google.maps.Marker({position: barMap2, map: map});
+
+        // map.addListener('center_changed', function () {
+        //     // 3 seconds after the center of the map has changed, pan back to the
+        //     // marker.
+        //     window.setTimeout(function () {
+        //         map.panTo(marker.getPosition());
+        //     }, 3000);
+        // });
+        // marker.addListener('click', function () {
+        //     map.setZoom(13);
+        //     map.setCenter(marker.getPosition());
+        // });
+    }
+
+    initMap();
+
+
+
+//     function initMap() {
+//         var myLatlng = { lat: -25.363, lng: 131.044 };
+ 
+//         var map = new google.maps.Map(document.getElementById('map'), {
+//             zoom: 4,
+//             center: myLatlng
+//         });
+ 
+//         var marker = new google.maps.Marker({
+//             position: myLatlng,
+//             map: map,
+//             title: 'Click to zoom'
+//         });
+ 
+//         map.addListener('center_changed', function () {
+//             // 3 seconds after the center of the map has changed, pan back to the
+//             // marker.
+//             window.setTimeout(function () {
+//                 map.panTo(marker.getPosition());
+//             }, 3000);
+//         });
+ 
+//         marker.addListener('click', function () {
+//             map.setZoom(8);
+//             map.setCenter(marker.getPosition());
+//         });
+//         console.log("map", map)
+//     }
+ 
+//     initMap();
+//  });
+ 
+
+
 });
 
 // pub category Id: 52e81612bcbc57f1066b7a06, 4bf58dd8d48988d11b941735

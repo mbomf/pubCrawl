@@ -118,9 +118,9 @@
                     <a id="from-link" href="#">Get my position</a> -->
                     <select id="crawlersCity">
                         <option id="city" data-latitude="25.78548" data-longitude="-80.19095" value="Miami,Fl">Miami</option>
-                        <option id="city" data-latitude="40.79587" data-longitude="-73.96706" value="Manhattan,NY">Manhattan</option>
-                        <option id="city" data-latitude="38.91330" data-longitude="1.43262" value="Ibiza">Ibiza</option>
-                        <option id="city" data-latitude="36.16607" data-longitude="-115.16467" value="Vegas,NV">Vegas</option>
+                        <option id="city" data-latitude="40.758896" data-longitude="-73.985130" value="Manhattan,NY">Manhattan</option>
+                        <option id="city" data-latitude="38.90883" data-longitude="1.43296" value="Ibiza">Ibiza</option>
+                        <option id="city" data-latitude="36.114647" data-longitude=" -115.172813" value="Vegas,NV">Vegas</option>
                         <option id="city" data-latitude="40.41466" data-longitude="-3.69724" value="Madrid">Madrid</option>
                     </select>
                     <div></div>
@@ -154,11 +154,19 @@
     </div>
     <br><br><br>
     <div class="row">
-        <div class="col l6 m6" id="map-display">
+        <div class="col l6 m6">
             <h5>Map your locations</h5>
         </div>
         <div class="col l6 m6">
             <h5>Remaining Pubs in this Tour: <span id="remaining">0</span>/<span id="total">0</span></h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l6 m6" id="map-display">
+            
+        </div>
+        <div class="col l6 m6">
+            
             <div class="collection" id="pub-options">
 
             </div>        
@@ -444,13 +452,13 @@
     <!-- <script type="text/javascript">
         var map;
         function initMap() {
-            map = new google.maps.Map(document.getElementById('maps'), {
+            map = new google.maps.Map(document.getElementById('map-display'), {
                 center: { lat: -34.397, lng: 150.644 },
                 zoom: 8
             });
-        }</script>
+        }</script> -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMD3ojp-P28ggup4xeFUZI9i6rYDJwRNU&callback=initMap"
-        async defer></script> -->
+        async defer></script>
 </body>
 
 
