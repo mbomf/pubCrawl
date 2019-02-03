@@ -1,7 +1,4 @@
-// console.log("on");
-console.log("works");
 
-// Or with jQuery
 $(document).ready(function () {
     // Initialize Firebase
     var config = {
@@ -20,6 +17,7 @@ $(document).ready(function () {
     var pubCounter = 0;
     var pubRemaining;
     var city;
+    var map;
     var venueLat;
     var venueLong;
     var venueName;
@@ -32,8 +30,6 @@ $(document).ready(function () {
     var locationLat = 25.78548;
     var latitudesArr = [];
     var longitudesArr = [];
-    var barMapLat = 25.78548;
-    var barMapLong = -80.19095;
     
 
     $('.slider').slider();
@@ -88,8 +84,6 @@ $(document).ready(function () {
         
             var results = response.response.venues;
             
-            // console.log("results j",results[j]);
-
             for (var j = 0; j < results.length; j++){
                 
                 venueId = results[j].id;
@@ -141,10 +135,6 @@ $(document).ready(function () {
 
         $(this).addClass("disabled");
 
-        // var ratingToShow;
-        // var idToAjax = $(this).attr("data-barid");
-        // barMapLat = parseFloat($(this).attr("data-barlat"));
-        // barMapLong = parseFloat($(this).attr("data-barlong"));
         latitudesArr.push(parseFloat($(this).attr("data-barlat")));
         longitudesArr.push(parseFloat($(this).attr("data-barlong")));
 
@@ -168,13 +158,9 @@ $(document).ready(function () {
         var pAddressVar = $("<p>");
         pAddressVar.text("Address: "+$(this).attr("data-baraddress"));
 
-        // var pRatingVar = $("<p>");
-        // pRatingVar.text("Rating: "+ratingToShow);
-
         cardContentVar.append(cardTitleVar);
         cardContentVar.append(pAddressVar);
-        // cardContentVar.append(pRatingVar);
-        
+                
         cardVar.append(cardContentVar);
 
         pubCardVar.append(cardVar);
@@ -189,23 +175,20 @@ $(document).ready(function () {
         var latToObj = $(this).attr("data-barlat");
         var longToObj = $(this).attr("data-barlong");
         var idToObj = $(this).attr("data-barid");
-        // var ratingToObj = ratingToShow;
-
+        
         var newPubObj = {
             name : nameToObj,
             address : addressToObj,
             latitude : latToObj,
             longitude : longToObj,
             id: idToObj,
-            // rating: ratingToObj
         };
 
         pubArray.push(newPubObj);
 
         console.log("array",pubArray);
 
-    });
-      
+    });      
 
     // send data to firebase
     $(document).on("click", "#make-reservation", function() {
@@ -219,13 +202,6 @@ $(document).ready(function () {
         database.ref().push(newTourObj);        
     });
 
-
-
-
-    // var maplat = 25.761681;
-    // var mapLong = -80.19095;
-
-    var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map-display'), {
             center: { lat: locationLat, lng: locationLong },
@@ -240,62 +216,9 @@ $(document).ready(function () {
             var barMap = {lat: latToMap, lng: longToMap};
             var marker = new google.maps.Marker({position: barMap, map: map});
         }
- 
-        // var barMap = { lat: barMapLat, lng: barMapLong}
-        // var barMap2 = { lat: 25.76476826848173, lng: -80.19347681701898}
-        // var marker = new google.maps.Marker({position: barMap, map: map});
-        // var marker = new google.maps.Marker({position: barMap2, map: map});
-
-        // map.addListener('center_changed', function () {
-        //     // 3 seconds after the center of the map has changed, pan back to the
-        //     // marker.
-        //     window.setTimeout(function () {
-        //         map.panTo(marker.getPosition());
-        //     }, 3000);
-        // });
-        // marker.addListener('click', function () {
-        //     map.setZoom(13);
-        //     map.setCenter(marker.getPosition());
-        // });
     }
 
     initMap();
-
-
-
-//     function initMap() {
-//         var myLatlng = { lat: -25.363, lng: 131.044 };
- 
-//         var map = new google.maps.Map(document.getElementById('map'), {
-//             zoom: 4,
-//             center: myLatlng
-//         });
- 
-//         var marker = new google.maps.Marker({
-//             position: myLatlng,
-//             map: map,
-//             title: 'Click to zoom'
-//         });
- 
-//         map.addListener('center_changed', function () {
-//             // 3 seconds after the center of the map has changed, pan back to the
-//             // marker.
-//             window.setTimeout(function () {
-//                 map.panTo(marker.getPosition());
-//             }, 3000);
-//         });
- 
-//         marker.addListener('click', function () {
-//             map.setZoom(8);
-//             map.setCenter(marker.getPosition());
-//         });
-//         console.log("map", map)
-//     }
- 
-//     initMap();
-//  });
- 
-
 
 });
 
