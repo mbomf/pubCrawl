@@ -87,16 +87,16 @@ $(document).ready(function () {
             for (var j = 0; j < results.length; j++){
                 
                 venueId = results[j].id;
-                venueName = results[j].name; 
-                
+                venueName = results[j].name;                 
                 venueAddress = results[j].location.formattedAddress;
                 venueLat = results[j].location.lat;
-                venueLong = results[j].location.lng;                
+                venueLong = results[j].location.lng;   
+
 
                 var anchorVar = $("<a>");
                 anchorVar.addClass("collection-item");
                 anchorVar.text(venueName);
-                
+
                 var spanVar = $("<span>");
                 spanVar.addClass("badge btn-flat waves-effect waves-light red add-btn");
                 spanVar.attr("data-barname", venueName);
@@ -104,7 +104,7 @@ $(document).ready(function () {
                 spanVar.attr("data-barlat", venueLat);
                 spanVar.attr("data-barlong", venueLong);
                 spanVar.attr("data-barid", venueId);
-
+                
                 var iTagVar = $("<i>");
                 iTagVar.addClass("material-icons");
                 iTagVar.text("+");
