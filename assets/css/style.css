@@ -85,17 +85,54 @@ h2 {
     font-family: 'Pacifico', cursive;
 }
 
+h5 {
+    font-family: 'Merienda', cursive;
+}
+
+p {
+
+    font-family: 'Barlow', sans-serif;
+
+}
+
+span{
+    font-family: 'Barlow', sans-serif;
+}
+
 .material-icons {
     font-family: 'Pacifico', cursive;
     font-size: 25px;
+}
+
+#cityform-Title {
+    color: rgb(255, 0, 89);
+}
+
+#cityform-subTitle {
+    color: teal;
+
 }
 
 /* #map{
     height: 50%;
     margin: 100px;
     padding:20px;
-    position: relative;
-    top: 770px;
+    position: absolute;
+    top: 670px;
     left:-30px;
-   
 } */
+
+#costs {
+    float: left;
+    text-align: left;
+    font-size: 10px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+#show-tour{
+    background-color: rgb(255, 0, 89);
+}
+
+
