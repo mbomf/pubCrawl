@@ -18,7 +18,9 @@ Customization
 Entertainment
 Ease of Use
 Dynamic Info that allows you to make more personalized decisions
+Suggestions for more convinience 
 
+http://recordit.co/ObiUBWSUEF
 
 ## Motivation:
 
