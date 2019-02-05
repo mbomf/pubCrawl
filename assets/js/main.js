@@ -45,9 +45,9 @@ $(document).ready(function () {
         $("#remaining").text(pubRemaining);
         if (pubRemaining == 0) {
             $(".add-btn").addClass("disabled");
-            
-        }        
-    }
+
+        }
+    };
 
     // Start capture of input
     $("#submit").on("click", function (event) {
@@ -122,8 +122,8 @@ $(document).ready(function () {
                 $("#pub-options").prepend(anchorVar);
                     
             }
-            $("#price-per-person").append(pubPerPerson);
-            $("#total-price").append(pubTotalCost);
+            $("#price-per-person").append(pubPerPerson + ".00");
+            $("#total-price").append(pubTotalCost + ".00");
 
     
             updateRemainingPubs();
@@ -226,7 +226,7 @@ $(document).ready(function () {
     $(document).on("click", "#make-reservation", function () {
 
         var userBarName = $("#pub-crawl-name").val();
-        console.log(userBarName);
+        //console.log(userBarName);
 
         var newTourObj = {
             tourName: userBarName,
@@ -305,7 +305,7 @@ $(document).ready(function () {
         // console.log(pricePerPerson);
 
         cardClosedTitle = nameCard;
-        cardOpenTitle = 
+        //cardOpenTitle = 
 
         cardContentClosedSpan.attr("class", "card-title activator grey-text text-darken-4");
         cardContentClosedSpan.append(iDivClosed);
