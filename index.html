@@ -4,14 +4,10 @@
 <head>
     <meta charset="UTF-8"/>
     <title>PUBCRAWL</title>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
-    <!-- <script src="http://maps.google.com/maps/api/js?sensor=true"></script> -->
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
         crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- maps -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <!-- Materialize -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -105,9 +101,7 @@
                         Scour the city’s top-rated venues <br> and partake in awesome drink specials!
                     </p>
                 </div>
-
             </div>
-
         </div>
         <div class="col l5 m5" id="createCrawl">
             <br>
@@ -117,29 +111,26 @@
                 <br>
                 <form id="calculate-route" name="calculate-route" action="#" method="get">
                     <label for="from" style="font-size:25px;">Where Are You Crawling From</label>
-                    <!-- <input class="z-depth-5" type="text" id="from" name="from" required="required" placeholder="Search By City or Address"
-                       size="30" />
-                   <a id="from-link" href="#">Get my position</a> -->
                     <select id="crawlersCity">
                         <option id="city" data-latitude="25.78548" data-longitude="-80.19095" value="Miami">Miami</option>
-                        <option id="city" data-latitude="40.79587" data-longitude="-73.96706" value="Manhattan">Manhattan</option>
-                        <option id="city" data-latitude="38.91330" data-longitude="1.43262" value="Ibiza">Ibiza</option>
-                        <option id="city" data-latitude="36.16607" data-longitude="-115.16467" value="Vegas">Vegas</option>
+                        <option id="city" data-latitude="40.758896" data-longitude="-73.985130" value="Manhattan">Manhattan</option>
+                        <option id="city" data-latitude="38.90883" data-longitude="1.43296" value="Ibiza">Ibiza</option>
+                        <option id="city" data-latitude="36.114647" data-longitude=" -115.172813" value="Vegas">Vegas</option>
                         <option id="city" data-latitude="40.41466" data-longitude="-3.69724" value="Madrid">Madrid</option>
-                        <option id="city" data-latitude="18.78560" data-longitude="72.89830" value="Beijing">Beijing</option>
-                        <option id="city" data-latitude="59.96461" data-longitude="10.63034" value="Oslo">Oslo</option>
-                        <option id="city" data-latitude="48.90622" data-longitude="2.19284" value="Paris">Paris</option>
-                        <option id="city" data-latitude="59.29812" data-longitude="17.92526" value="StockHolm">StockHolm</option>
-                        <option id="city" data-latitude="48.26670" data-longitude="11.42135" value="Munich">Munich</option>
-                        <option id="city" data-latitude="41.06670" data-longitude="29.06640" value="Istanbul">Istanbul</option>
-                        <option id="city" data-latitude="-34.60427" data-longitude="-58.53585" value="Buenos Aires">Buenos Aires</option>
-                        <option id="city" data-latitude="6.27862" data-longitude="-75.67452" value="Medellin">Medellin</option>
-                        <option id="city" data-latitude="-22.70890" data-longitude="-43.41866" value="Rio">Rio</option>
-                        <option id="city" data-latitude="-33.85306" data-longitude="18.44027" value="Cape Town">Cape Town</option>
-                        <option id="city" data-latitude="-37.71950" data-longitude="144.83959" value="Melbourne">Melbourne</option>
-                        <option id="city" data-latitude="-33.65217" data-longitude="151.34350" value="Sydney">Sydney</option>
-                        <option id="city" data-latitude="51.47740" data-longitude="-0.13278" value="London">London</option>
-                        <option id="city" data-latitude="19.18103" data-longitude="109.88407" value="Hong Kong">Hong Kong</option>
+                        <option id="city" data-latitude="39.954196" data-longitude="116.453115" value="Beijing">Beijing</option>
+                        <option id="city" data-latitude="59.911491" data-longitude="10.757933" value="Oslo">Oslo</option>
+                        <option id="city" data-latitude="48.864716" data-longitude="2.349014" value="Paris">Paris</option>
+                        <option id="city" data-latitude="59.334591" data-longitude="18.063240" value="StockHolm">StockHolm</option>
+                        <option id="city" data-latitude="48.137154" data-longitude="11.576124" value="Munich">Munich</option>
+                        <option id="city" data-latitude="41.015137" data-longitude="28.979530" value="Istanbul">Istanbul</option>
+                        <option id="city" data-latitude="-34.583541" data-longitude="-58.433912" value="Buenos Aires">Buenos Aires</option>
+                        <option id="city" data-latitude="6.25184" data-longitude="-75.56359" value="Medellin">Medellin</option>
+                        <option id="city" data-latitude="-22.983603" data-longitude="-43.198612" value="Rio">Rio</option>
+                        <option id="city" data-latitude="-33.918861" data-longitude="18.423300" value="Cape-Town">Cape Town</option>
+                        <option id="city" data-latitude="-37.815018" data-longitude="144.946014" value="Melbourne">Melbourne</option>
+                        <option id="city" data-latitude="-33.865143" data-longitude="151.209900" value="Sydney">Sydney</option>
+                        <option id="city" data-latitude="51.515630741308314" data-longitude="-0.1365905668753249" value="London">London</option>
+                        <option id="city" data-latitude="22.286394" data-longitude="114.149139" value="Hong Kong">Hong Kong</option>
                     </select>
                     <div></div> 
                     <br>
@@ -172,15 +163,22 @@
     </div>
     <br><br><br>
     <div class="row">
-        <div class="col l6 m6" id="map-display">
+        <div class="col l6 m6">
             <h5>Map your locations</h5>
-            <div class="map"></div>
         </div>
         <div class="col l6 m6">
             <h5>Remaining Pubs in this Tour: <span id="remaining">0</span>/<span id="total">0</span></h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col l6 m6" id="map-display">
+            
+        </div>
+        <div class="col l6 m6">
+            
             <div class="collection" id="pub-options">
 
-            </div>
+            </div>        
         </div>
     </div>
 
@@ -253,130 +251,6 @@
 
     <div class="row" id="existing-crawls" style="padding-bottom:30px;">
        <br><br>
-        <!-- <div class="col-lg-3">
-            <div class="card z-depth-3">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="assets/images/cardPicMiami.png" alt="Miami">
-                </div>
-                <div class="card-content fluid">
-                    <span class="card-title activator grey-text text-darken-4">My Latest Crawl<i class="material-icons right"
-                            style="font-size:35px;">$47/p</i></span>
-                    <p style="font-size:18px;"><a href="#">Create Your Own Itinerary</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">My Latest Crawl - Miami<i class="material-icons right">X</i></span>
-                    <div id="location-1">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-2">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-3">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-4">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- <div class="col-lg-3">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="assets/images/cardPicManhattan.png" alt="Manhattan">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">My Third Crawl<i class="material-icons right"
-                            style="font-size:35px;">$55/p</i></span>
-                    <p id="city-name">City Name: </p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">My Third Crawl - Manhattan<i class="material-icons right">close</i></span>
-                    <div id="location-1">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-2">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-3">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-4">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="assets/images/cardPicIbiza.png" alt="Ibiza">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">My Second Crawl<i class="material-icons right"
-                            style="font-size:35px;">$30/p</i></span>
-                    <p><a href="#">Create Your Own Itinerary</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">My Second Crawl - Ibiza<i class="material-icons right">close</i></span>
-                    <div id="location-1">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-2">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-3">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-4">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3">
-            <div class="card">
-                <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="assets/images/cardPicVegas.png" alt="Vegas">
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">My First Crawl<i class="material-icons right"
-                            style="font-size:35px;">$38/p</i></span>
-                    <p><a href="#">Create Your Own Itinerary</a></p>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">My First Crawl - Vegas<i class="material-icons right">close</i></span>
-                    <div id="location-1">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-2">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-3">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                    <div id="location-4">
-                        <h5>Name</h5>
-                        <p>Address: </p>
-                    </div>
-                </div>
-            </div>
-        </div> --> 
     </div>
     <footer class="page-footer">
         <div class="container">
@@ -418,9 +292,11 @@
             </div>
         </div>
     </footer>
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
-</body>
 
+    <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMD3ojp-P28ggup4xeFUZI9i6rYDJwRNU&callback=initMap"
+        async defer></script>
+</body>
 
 </html>

@@ -1,8 +1,4 @@
 $(document).ready(function(){
-<<<<<<< HEAD
-   
- });
-=======
     var map;
     function initMap() {
       map = new google.maps.Map(document.getElementById('map'), {
@@ -11,4 +7,3 @@ $(document).ready(function(){
       });
     }
 });
->>>>>>> f98365c17962916fa9fd3c80733336a2b8ab4aad
